@@ -1,6 +1,6 @@
 # sophomore-project
 Physics Calculator - 
-Here's some of the GUI, so far. It should now accept and error check entries in all the text boxes. Unit drop-downs work. ENTER and CLEAR buttons work.
+Ok, big update to everything. Everything works, has been renamed, and cleaned up. I added a title, and built the help window. Just waiting for the guts to be added.
 
 To run it, start a new project in Netbeans (probably should name it javafxapplication10, since that's what this one is called).
 - JavaFX - JavaFXML Application.
