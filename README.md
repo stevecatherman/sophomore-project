@@ -1,5 +1,3 @@
 # sophomore-project
 
-Simple GUI now incorporates simple version of Dustin's Formulas.java
-
-I figured out how to make folders!
+5/26/2019: We now now a FILE and HELP menu in the GUI, that will save and open files, abd gives some info on who we are and who we've borrowed code from.
