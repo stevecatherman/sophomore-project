@@ -3,6 +3,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,32 +14,32 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="652.0" prefWidth="533.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PhysicsCalculator.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="701.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PhysicsCalculator.FXMLDocumentController">
    <children>
-      <Button fx:id="calcButton" layoutX="355.0" layoutY="570.0" mnemonicParsing="false" onAction="#calcButtonListener" prefHeight="66.0" prefWidth="142.0" text="Calculate" textFill="#e80b0b">
+      <Button fx:id="calcButton" layoutX="355.0" layoutY="613.0" mnemonicParsing="false" onAction="#calcButtonListener" prefHeight="66.0" prefWidth="142.0" text="Calculate" textFill="#e80b0b">
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Button>
-      <Button fx:id="enterButton" alignment="CENTER" layoutX="148.0" layoutY="501.0" mnemonicParsing="false" onAction="#enterButtonListener" prefHeight="25.0" prefWidth="65.0" text="Enter" />
-      <ImageView fx:id="step1image" fitHeight="43.0" fitWidth="43.0" layoutX="161.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true" />
-      <Label alignment="CENTER" layoutX="29.0" layoutY="134.0" prefHeight="25.0" prefWidth="308.0" text="Step 1. Enter known variables here:" textAlignment="CENTER">
+      <Button fx:id="enterButton" alignment="CENTER" layoutX="148.0" layoutY="544.0" mnemonicParsing="false" onAction="#enterButtonListener" prefHeight="25.0" prefWidth="65.0" text="Enter" />
+      <ImageView fx:id="step1image" fitHeight="43.0" fitWidth="43.0" layoutX="161.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" />
+      <Label alignment="CENTER" layoutX="29.0" layoutY="176.0" prefHeight="25.0" prefWidth="308.0" text="Step 1. Enter known variables here:" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="29.0" layoutY="578.0" prefHeight="25.0" prefWidth="308.0" text=" Step 2. Press ENTER button" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="29.0" layoutY="621.0" prefHeight="25.0" prefWidth="308.0" text=" Step 2. Press ENTER button" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ImageView fx:id="step2image" fitHeight="43.0" fitWidth="43.0" layoutX="161.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="helpButton" alignment="CENTER" layoutX="368.0" layoutY="122.0" mnemonicParsing="false" onAction="#helpButtonListener" prefHeight="77.0" prefWidth="129.0" text="Need Help?">
+      <ImageView fx:id="step2image" fitHeight="43.0" fitWidth="43.0" layoutX="161.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="helpButton" alignment="CENTER" layoutX="368.0" layoutY="164.0" mnemonicParsing="false" onAction="#helpButtonListener" prefHeight="77.0" prefWidth="129.0" text="Need Help?">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="clearButton" alignment="CENTER" layoutX="29.0" layoutY="501.0" mnemonicParsing="false" onAction="#clearButtonListener" prefHeight="25.0" prefWidth="64.0" text="Clear" />
-      <GridPane alignment="CENTER" layoutX="6.0" layoutY="206.0" prefHeight="279.0" prefWidth="461.0">
+      <Button fx:id="clearButton" alignment="CENTER" layoutX="29.0" layoutY="544.0" mnemonicParsing="false" onAction="#clearButtonListener" prefHeight="25.0" prefWidth="64.0" text="Clear" />
+      <GridPane alignment="CENTER" layoutY="251.0" prefHeight="279.0" prefWidth="461.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="105.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="142.0" />
@@ -78,12 +81,34 @@
             <ChoiceBox fx:id="distanceUnits" prefHeight="25.0" prefWidth="74.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Label alignment="CENTER" layoutX="333.0" layoutY="531.0" prefHeight="27.0" prefWidth="192.0" text=" Step 3. Choose units" textAlignment="CENTER">
+      <Label alignment="CENTER" layoutX="333.0" layoutY="574.0" prefHeight="27.0" prefWidth="192.0" text=" Step 3. Choose units" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ImageView fx:id="step3image" fitHeight="43.0" fitWidth="43.0" layoutX="408.0" layoutY="487.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="titleImage" fitHeight="120.0" fitWidth="533.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="step3image" fitHeight="43.0" fitWidth="43.0" layoutX="408.0" layoutY="530.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="titleImage" fitHeight="120.0" fitWidth="533.0" layoutX="1.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+      <MenuBar fx:id="menu" layoutX="-1.0" prefHeight="25.0" prefWidth="525.0">
+        <menus>
+          <Menu fx:id="fileMenu" mnemonicParsing="false" onAction="#menuListener" text="File">
+            <items>
+              <MenuItem fx:id="fileMenuSave" mnemonicParsing="false" onAction="#menuListener" text="Save" />
+                  <MenuItem fx:id="fileMenuOpen" mnemonicParsing="false" onAction="#menuListener" text="Open" />
+                  <MenuItem fx:id="fileMenuExit" mnemonicParsing="false" onAction="#menuListener" text="Exit" />
+            </items>
+          </Menu>
+          <Menu fx:id="editMenu" mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#menuListener" text="Delete" />
+            </items>
+          </Menu>
+          <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="helpMenuAbout" mnemonicParsing="false" onAction="#menuListener" text="About" />
+                  <MenuItem fx:id="helpMenuCredits" mnemonicParsing="false" onAction="#menuListener" text="Credits" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

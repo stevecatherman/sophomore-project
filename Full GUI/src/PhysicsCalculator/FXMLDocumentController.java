@@ -19,6 +19,18 @@ public class FXMLDocumentController implements Initializable {
     
     private final Alert numberEntryAlert = new Alert(AlertType.INFORMATION);
 
+    //Menu
+    @FXML private MenuBar menu;
+    @FXML private Menu fileMenu;
+    @FXML private Menu editMenu;
+    @FXML private Menu helpMenu;
+    @FXML private MenuItem fileMenuSave;
+    @FXML private MenuItem fileMenuOpen;
+    @FXML private MenuItem fileMenuExit;
+    @FXML private MenuItem helpMenuAbout;
+    @FXML private MenuItem helpMenuCredits;
+    private FileChooser fileChooser;
+    
     //Input and output text
     @FXML private TextField velocityText;
     @FXML private TextField massText;
@@ -49,6 +61,8 @@ public class FXMLDocumentController implements Initializable {
     //Help Window Button
     @FXML private Button helpButton;
     Stage helpStage;
+    Stage aboutStage;
+    Stage creditsStage;
     
     //Instruction arrows and Title
     @FXML private ImageView step1image;
@@ -66,6 +80,13 @@ public class FXMLDocumentController implements Initializable {
     @FXML private ChoiceBox<String> timeUnits;
     @FXML private ChoiceBox<String> forceUnits;
     @FXML private ChoiceBox<String> distanceUnits;
+    
+    ObservableList<String> velocityAvailableChoices;
+    ObservableList<String> forceAvailableChoices;
+    ObservableList<String> massAvailableChoices;
+    ObservableList<String> accelerationAvailableChoices;
+    ObservableList<String> timeAvailableChoices;
+    ObservableList<String> distanceAvailableChoices;
     
     String selectedVelocityUnit;
     String selectedForceUnit;
@@ -86,6 +107,12 @@ public class FXMLDocumentController implements Initializable {
         
         //Set up Help Window
         helpStage = new Stage();
+        aboutStage = new Stage();
+        creditsStage = new Stage();
+        
+        //Set up menu
+        fileChooser = new FileChooser();
+        editMenu.setDisable(true);
         
         //Warning message if entries are not valid numbers
         numberEntryAlert.setTitle("Alert Message");
@@ -102,32 +129,32 @@ public class FXMLDocumentController implements Initializable {
         
         //Set up units choice box - code borrowed from John Damien Smith 5/20/19
         //https://coderanch.com/t/649781/java/Set-values-ChoiceBox-created-Scene
-        ObservableList<String> velocityAvailableChoices = velocityUnits.getItems();
+        velocityAvailableChoices = velocityUnits.getItems();
         velocityAvailableChoices = FXCollections.observableArrayList("m/s"); 
         velocityUnits.setItems(velocityAvailableChoices);
         selectedVelocityUnit = velocityUnits.getSelectionModel().getSelectedItem();
 
-        ObservableList<String> forceAvailableChoices = forceUnits.getItems();
+        forceAvailableChoices = forceUnits.getItems();
         forceAvailableChoices = FXCollections.observableArrayList("N"); 
         forceUnits.setItems(forceAvailableChoices);
         selectedForceUnit = forceUnits.getSelectionModel().getSelectedItem();
         
-        ObservableList<String> massAvailableChoices = massUnits.getItems();
+        massAvailableChoices = massUnits.getItems();
         massAvailableChoices = FXCollections.observableArrayList("kg"); 
         massUnits.setItems(massAvailableChoices);
         selectedMassUnit = massUnits.getSelectionModel().getSelectedItem();        
         
-        ObservableList<String> accelerationAvailableChoices = accelerationUnits.getItems();
+        accelerationAvailableChoices = accelerationUnits.getItems();
         accelerationAvailableChoices = FXCollections.observableArrayList("m/s/s"); 
         accelerationUnits.setItems(accelerationAvailableChoices);
         selectedAccelerationUnit = accelerationUnits.getSelectionModel().getSelectedItem();
 
-        ObservableList<String> timeAvailableChoices = timeUnits.getItems();
+        timeAvailableChoices = timeUnits.getItems();
         timeAvailableChoices = FXCollections.observableArrayList("s"); 
         timeUnits.setItems(timeAvailableChoices);
         selectedTimeUnit = timeUnits.getSelectionModel().getSelectedItem(); 
 
-        ObservableList<String> distanceAvailableChoices = distanceUnits.getItems();
+        distanceAvailableChoices = distanceUnits.getItems();
         distanceAvailableChoices = FXCollections.observableArrayList("m"); 
         distanceUnits.setItems(distanceAvailableChoices);
         selectedDistanceUnit = distanceUnits.getSelectionModel().getSelectedItem();               
@@ -237,7 +264,8 @@ public class FXMLDocumentController implements Initializable {
         distanceLabel.setText("");
         distanceUnits.getSelectionModel().clearSelection();        
     }//end clearButtonListener method
-
+    
+    //Help button
     @FXML private void helpButtonListener(ActionEvent event) throws Exception{
         if(helpStage.isShowing()){
             helpStage.toFront();
@@ -249,4 +277,156 @@ public class FXMLDocumentController implements Initializable {
             helpStage.show();
         }//end if else
     }//end helpButtonListener method  
+
+    //Menu
+    @FXML private void menuListener(ActionEvent event) throws Exception{
+        Stage stage = (Stage)velocityLabel.getScene().getWindow();
+        Scanner inFile = null;
+        String input;
+
+        //FILE menu
+        //OPEN file
+        if(event.getSource() == fileMenuOpen) {
+            try{
+                File file = fileChooser.showOpenDialog(stage);
+                inFile = new Scanner(file);
+                
+                input = inFile.nextLine();
+                velocityLabel.setText(input);
+                input = inFile.nextLine();
+                massLabel.setText(input);                
+                input = inFile.nextLine();
+                accelerationLabel.setText(input);
+                input = inFile.nextLine();
+                timeLabel.setText(input);
+                input = inFile.nextLine();
+                forceLabel.setText(input);
+                input = inFile.nextLine();
+                distanceLabel.setText(input);                
+
+                //Units
+                //Velocity
+                input = inFile.nextLine();
+                for(int i = 0; i < velocityAvailableChoices.size(); i++){
+                    if(velocityAvailableChoices.get(i).equals(input)){
+                        velocityUnits.getSelectionModel().select(i);
+                        break;
+                    }//end if
+                }//end for loop
+                
+                //mass
+                input = inFile.nextLine();
+                for(int i = 0; i < massAvailableChoices.size(); i++){
+                    if(massAvailableChoices.get(i).equals(input)){
+                        massUnits.getSelectionModel().select(i);
+                        break;
+                    }//end if
+                }//end for loop
+
+                //acceleration
+                input = inFile.nextLine();
+                for(int i = 0; i < accelerationAvailableChoices.size(); i++){
+                    if(accelerationAvailableChoices.get(i).equals(input)){
+                        accelerationUnits.getSelectionModel().select(i);
+                        break;
+                    }//end if
+                }//end for loop
+                
+                //time
+                input = inFile.nextLine();
+                for(int i = 0; i < timeAvailableChoices.size(); i++){
+                    if(timeAvailableChoices.get(i).equals(input)){
+                        timeUnits.getSelectionModel().select(i);
+                        break;
+                    }//end if
+                }//end for loop
+                
+                //force
+                input = inFile.nextLine();
+                for(int i = 0; i < forceAvailableChoices.size(); i++){
+                    if(forceAvailableChoices.get(i).equals(input)){
+                        forceUnits.getSelectionModel().select(i);
+                        break;
+                    }//end if
+                }//end for loop  
+
+                //distance
+                input = inFile.nextLine();
+                for(int i = 0; i < distanceAvailableChoices.size(); i++){
+                    if(distanceAvailableChoices.get(i).equals(input)){
+                        distanceUnits.getSelectionModel().select(i);
+                        break;
+                    }//end if
+                }//end for loop  
+                
+                inFile.close();
+            }//end try
+            
+            catch(FileNotFoundException ex) {
+                System.out.println("Can't write.");
+            }//end catch
+        }//end if, for Open Saved Character File menu item
+               
+        //SAVE file
+        else if(event.getSource() == fileMenuSave) {
+                
+            try{
+                File file = fileChooser.showSaveDialog(stage);
+                PrintWriter pw = new PrintWriter(file);
+
+                pw.println(velocityLabel.getText());
+                pw.println(massLabel.getText());
+                pw.println(accelerationLabel.getText());
+                pw.println(timeLabel.getText());
+                pw.println(forceLabel.getText());
+                pw.println(distanceLabel.getText());
+                
+                pw.println(velocityUnits.getValue());
+                pw.println(massUnits.getValue());
+                pw.println(accelerationUnits.getValue());
+                pw.println(timeUnits.getValue());
+                pw.println(forceUnits.getValue());
+                pw.println(distanceUnits.getValue());
+                
+                pw.close();
+            }//end try
+
+            catch(FileNotFoundException ex){
+                System.out.println("Can't read.");
+            }//end catch
+        }//end if
+
+        //CLOSE program
+        else if(event.getSource() == fileMenuExit){
+            System.exit(0);
+        }//end else if 
+
+        //HELP Menu
+        //ABOUT
+        if(event.getSource() == helpMenuAbout){
+            if(aboutStage.isShowing()){
+                aboutStage.toFront();
+            }//end if
+            else{
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLAboutDocument.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
+                aboutStage.setScene(new Scene(root));
+                aboutStage.show();
+            }//end if else
+        }//end if
+            
+        //CREDITS
+        if(event.getSource() == helpMenuCredits){        
+            if(creditsStage.isShowing()){
+                creditsStage.toFront();
+            }//end if
+            else{
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLCreditsDocument.fxml"));
+                Parent root = (Parent) fxmlLoader.load();
+                creditsStage.setScene(new Scene(root));
+                creditsStage.show();
+            }//end if else
+        }//end if
+        
+    }//end menuListener method
 }//end DocumentController
