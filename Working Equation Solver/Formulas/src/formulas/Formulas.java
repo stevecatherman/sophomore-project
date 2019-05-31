@@ -1,7 +1,7 @@
 package formulas;
 
 import java.util.*;
-
+//test
 public class Formulas {
     
     public static String calculateA(String B, String C) {
