@@ -11,8 +11,10 @@ package equations;
  */
 public class Equations {
     
+
     //Calculates Displacement when given Initial and Final Position
-    public static String calculateDisplacement(String XF, String XI) { //Calculate Displacement. XF = final position, XF = initial 
+    //XF = final position, XF = initial 
+    public static String calculateDisplacement(String XF, String XI) { 
         String D;
         double d;
         double xf = Double.parseDouble(XF);//casting input XF as a double value using parse
@@ -23,8 +25,9 @@ public class Equations {
         return D;//returns the string value for D
     }
     
-    //Calculates Displacement when given acceleration, Initial Velocity, and Time.
-    public static String calculateDisplacement2(String A, String VI, String T) { //Calculate Displacement. A = Acceleration, VI= Initial Velocity, T=Time
+    //Calculates Displacement when given Acceleration, Initial Velocity, and Time.
+    //A = Acceleration, VI= Initial Velocity, T=Time
+    public static String calculateDisplacement2(String A, String VI, String T) { 
         String D;
         double d;
         double a = Double.parseDouble(A);//casting input A as a double value using parse
@@ -38,13 +41,27 @@ public class Equations {
     }
     
       //Calculates Displacement when given Initial Velcoity, Final Velocity, and Time. 
-      public static String calculateDisplacement3(String V, String VI, String T) { //Calculate Displacement. V = Final Velocity, VI= Initial Velocity, T=Time
+      //V = Final Velocity, VI= Initial Velocity, T=Time
+      public static String calculateDisplacement3(String V, String VI, String T) { 
         String D;
         double d;
         double v = Double.parseDouble(V);//casting input V as a double value using parse
         double vi = Double.parseDouble(VI); //casting input VI as a double value using parse
         double t = Double.parseDouble(T);//casting input T as a double value using parse
         d = ((v+vi)/2)*t;  // d=((v+vi)/2)t
+        D = Double.toString(d);//casting d from double to string D for output
+        return D;//returns the string value for D
+      }
+      
+      //Calculates Displacement when given Final Velocity, Initial Velocity, and Acceleration
+      //V = Final Velocity, VI= Initial Velocity, A = Acceleration
+      public static String calculateDisplacement4(String V, String VI, String A) { 
+        String D;
+        double d;
+        double v = Double.parseDouble(V);//casting input V as a double value using parse
+        double vi = Double.parseDouble(VI); //casting input VI as a double value using parse
+        double a = Double.parseDouble(A);//casting input T as a double value using parse
+        d = (Math.pow(v, 2)- Math.pow(vi, 2))/ (2*a);  // d = (v^2 - vi^2) / 2a
         D = Double.toString(d);//casting d from double to string D for output
         return D;//returns the string value for D
       }
