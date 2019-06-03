@@ -37,7 +37,7 @@ public class Equations {
         return D;//returns the string value for D
     }
     
-      //Calculates the Final Position when given Final Velocity, Initial Velocity, and Time. 
+      //Calculates Displacement when given Initial Velcoity, Final Velocity, and Time. 
       public static String calculateDisplacement3(String V, String VI, String T) { //Calculate Displacement. V = Final Velocity, VI= Initial Velocity, T=Time
         String D;
         double d;
