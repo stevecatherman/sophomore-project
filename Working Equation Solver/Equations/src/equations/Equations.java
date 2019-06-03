@@ -44,11 +44,12 @@ public class Equations {
         double v = Double.parseDouble(V);//casting input V as a double value using parse
         double vi = Double.parseDouble(VI); //casting input VI as a double value using parse
         double t = Double.parseDouble(T);//casting input T as a double value using parse
-        d = ((v+vi)/2)*t;  // Δx=((v+vi)/2)t
-
+        d = ((v+vi)/2)*t;  // d=((v+vi)/2)t
         D = Double.toString(d);//casting d from double to string D for output
         return D;//returns the string value for D
-    public static void main(String[] args) {
+      }
+
+public static void main(String[] args) {
         // TODO code application logic here
     }
     
