@@ -5,11 +5,9 @@
  */
 package equations;
 
-/**
- *
- * @author mpeace
- */
+
 public class Equations {
+    
     
 
     //Calculates Displacement when given Initial and Final Position
