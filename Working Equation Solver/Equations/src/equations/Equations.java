@@ -63,7 +63,49 @@ public class Equations {
         D = Double.toString(d);//casting d from double to string D for output
         return D;//returns the string value for D
       }
+    
+     //calculate time using final velocity, initial velocity and acceleration
+      //VF = final velocity, VI = initial velocity, A = acceleration
+      public static String calculateTime(String VF, String VI, String A) {
+        String T;
+        double t;
+        double vf = Double.parseDouble(VF);//casting input VF as a double value using parse
+        double vi = Double.parseDouble(VI);//casting input VI as a double value using parse
+        double a = Double.parseDouble(A);//casting input A  as a double value using parse   
+        t = ((vf - vi) / a);//formula for time final velocity - initial velocity  / acceleration
+        T = Double.toString(t);//casting t from double to string T for output
+          
+        return T;//returns the string value for T 
+    }
+    
+     //Calculate average time when given final time and initial time
+     //TF = final time, TI = initial time
+     public static String calculateAvgTime(String TF, String TI) {
+        String T;
+        double t;
+        double tf = Double.parseDouble(TF);//casting input tf as a double value using parse
+        double ti = Double.parseDouble(TI);//casting input ti as a double value using parse
+        t = tf - ti;//formula for average time, final time - initial time
+        T = Double.toString(t);//casting t from double to string T for output
+         
+        return T;//returns the string value for T
+    }
 
+     //Calculate acceleration when given final velocity, initial velocity, final time and initial time 
+     //VF = final velocity, VI = inital velocity, TF = final time, TI = initial time
+     public static String calculateAcceleration(String VF, String VI, String TF, String TI) {
+        String A;
+        double a;
+        double vf = Double.parseDouble(VF);//casting input vf as a double value using parse
+        double vi = Double.parseDouble(VI);//casting input vi as a double value using parse
+        double tf = Double.parseDouble(TF);//casting input tf as a double value using parse
+        double ti = Double.parseDouble(TI);//casting input ti as a double value using parse
+        a = (vf - vi) / (tf - ti);//formula acceleration final velocity - initial velocity / final time - initial time
+        A = Double.toString(a);//casting a from double to string A for output
+         
+        return A;//returns the string value for A
+    }
+        
 public static void main(String[] args) {
         // TODO code application logic here
     }
