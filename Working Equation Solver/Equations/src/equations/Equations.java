@@ -105,7 +105,37 @@ public class Equations {
          
         return A;//returns the string value for A
     }
-        
+    
+    //Steven J - 6/4/29
+    //Calculates Final Velocity when given Initial Velocity, Acceleration and Time
+    //U = Initial Velocity, A = Acceleration, T = Time
+    public static String calculateFinalVelocity(String U, String A, String T) { 
+        String V;
+        double v;
+        double u = Double.parseDouble(U);//casting input U as a double value using parse
+        double t = Double.parseDouble(T);//casting input T as a double value using parse
+        double a = Double.parseDouble(A);//casting input A as a double value using parse
+        v =  u + a*t;    //Final Velocity = Initial Velocity + Acceleration*(time)
+        V = Double.toString(d);//casting v from double to string V for output
+
+        return V;//returns the string value for V
+    }
+    
+    //Steven J - 6/4/29
+    //Calculates Initial Velocity when given Final Velocity, Acceleration and Time
+    //Final Velocity = V, A = Acceleration, T = Time
+    public static String calculateInitialVelocity(String V, String A, String T) { 
+        String U;
+        double u;
+        double v = Double.parseDouble(V);//casting input V as a double value using parse
+        double t = Double.parseDouble(T);//casting input T as a double value using parse
+        double a = Double.parseDouble(A);//casting input A as a double value using parse
+        u =  v - a*t;    //Initial Velocity = Final Velocity - Acceleration*(time)
+        U = Double.toString(d);//casting u from double to string U for output
+
+        return U;//returns the string value for U
+    }
+    
 public static void main(String[] args) {
         // TODO code application logic here
     }
