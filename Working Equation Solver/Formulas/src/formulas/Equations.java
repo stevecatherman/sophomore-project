@@ -5,7 +5,7 @@
  */
 package formulas;
 
-public class Equations extends Formulas {
+public class Equations {
 
     //Calculates Displacement when given Initial and Final Position
     //XF = final position, XF = initial 
@@ -208,10 +208,6 @@ public class Equations extends Formulas {
         VI = Double.toString(vi);//casting vi from double to string VI for output
 
         return VI;//returns the string value for U
-    }
-
-    public static void main(String[] args) {
-        // TODO code application logic here
     }
 
 }
