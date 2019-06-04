@@ -116,7 +116,7 @@ public class Equations {
         double t = Double.parseDouble(T);//casting input T as a double value using parse
         double a = Double.parseDouble(A);//casting input A as a double value using parse
         v =  u + a*t;    //Final Velocity = Initial Velocity + Acceleration*(time)
-        V = Double.toString(d);//casting v from double to string V for output
+        V = Double.toString(v);//casting v from double to string V for output
 
         return V;//returns the string value for V
     }
@@ -131,7 +131,7 @@ public class Equations {
         double t = Double.parseDouble(T);//casting input T as a double value using parse
         double a = Double.parseDouble(A);//casting input A as a double value using parse
         u =  v - a*t;    //Initial Velocity = Final Velocity - Acceleration*(time)
-        U = Double.toString(d);//casting u from double to string U for output
+        U = Double.toString(u);//casting u from double to string U for output
 
         return U;//returns the string value for U
     }
