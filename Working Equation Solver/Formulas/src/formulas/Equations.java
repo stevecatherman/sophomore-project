@@ -7,6 +7,35 @@ package formulas;
 
 public class Equations {
 
+    
+
+    //Calculates Initial Position given Final Position and Displacement
+    //XF = final position, XI = Initial Position, D = Displacement
+    public static String calculateInitialPosition(String D, String XF) {
+        String XI;
+        double xi;
+        double xf = Double.parseDouble(XF);//casting input XF as a double value using parse
+        double d = Double.parseDouble(D); //casting input D as a double value using parse
+        
+        xi = xf - d; //Initial Position = Final Pos - Displacement
+        XI = Double.toString(xi);//casting xi from double to string XI for output
+
+        return XI;//returns the string value for XI
+    }
+ 
+    //Calculates Final Position given Inital Position and Displacement
+    //XI = Initial position, XF = Final Position, D = Displacement 
+    public static String calculateFinalPosition(String D, String XI) {
+        String XF;
+        double xf;
+        double xi = Double.parseDouble(XI);//casting input XI as a double value using parse
+        double d = Double.parseDouble(D); //casting input D as a double value using parse
+        
+        xf = d + xi; //Final Position = Displacement + Initial Position
+        XF = Double.toString(xf);//casting xf from double to string XF for output
+
+        return XF;//returns the string value for XF
+    }
     //Calculates Displacement when given Initial and Final Position
     //XF = final position, XF = initial 
     public static String calculateDisplacement(String XF, String XI) {
