@@ -23,6 +23,82 @@ public class Equations {
         return XI;//returns the string value for XI
     }
  
+    //Calculates Initial Position when given acceleration, initial velocity, time, and final position
+    //A = Acceleration, VI = Initial Velocity, T = Time, XF = Final Position, XI = Initial Position
+    public static String calculateInitialPosition2(String A, String VI, String T, String XF) {
+        String XI;
+        double xi;
+        double a = Double.parseDouble(A);//casting input A as a double value using parse
+        double xf = Double.parseDouble(XF);
+        double vi;
+        if (VI != null) {
+            vi = Double.parseDouble(VI);//casting input VI as a double value using parse
+        } else {
+            vi = 0;
+        }
+        
+        double t = Double.parseDouble(T);//casting input T as a double value using parse
+        xi = (-vi * t) - (a * Math.pow(t, 2)/2) + xf;  //Initial pos = -velocity*time - (accleration * time^2)/2 + xf
+
+        XI = Double.toString(xi);//casting xi from double to string XI for output
+
+        return XI;//returns the string value for XI
+    }
+    
+    //Calculates Initial Position when given Initial Velcoity, Final Velocity, Final Position,and Time. 
+    //V = Final Velocity, VI= Initial Velocity, T=Time, XI= Initial Position, XF = Final Position
+    public static String calculateInitialPosition3(String VF, String VI, String T, String XF) {
+        String XI;
+        double xi;
+        double vf;
+        double xf = Double.parseDouble(XF);
+        if (VF != null) {
+            vf = Double.parseDouble(VF);//casting input VF as a double value using parse
+        } else {
+            vf = 0;
+        }
+        
+        double vi;
+        if (VI != null) {
+            vi = Double.parseDouble(VI);//casting input VI as a double value using parse
+        } else {
+            vi = 0;
+        }
+      
+        double t = Double.parseDouble(T);//casting input T as a double value using parse
+        xi = -1 * ((t*vf)+(t*vi)-(2*t))/ 2;  
+        XI = Double.toString(xi);//casting xi from double to string XI for output
+        return XI;//returns the string value for XI
+    }
+    
+    
+    //Calculates Initial Position when given Final Velocity, Initial Velocity, Acceleration, and Final Position
+    // VF = Final Velocity, VI = Initial Velocity, A = Acceleration, XF = Final Position, XI = Initial Position
+    public static String calculateInitialPosition4(String VF, String VI, String A, String XF) {
+        String XI;
+        double xi;
+        double vf;
+        double xf = Double.parseDouble(XF); //casting input XF as a double value using parse
+        if (VF != null) {
+            vf = Double.parseDouble(VF);//casting input VF as a double value using parse
+        } else {
+            vf = 0;
+        }
+        
+        double vi;
+        if (VI != null) {
+            vi = Double.parseDouble(VI);//casting input VI as a double value using parse
+        } else {
+            vi = 0;
+        }
+        
+        double a = Double.parseDouble(A);//casting input A as a double value using parse
+        xi = -1 * ((Math.pow(vf, 2) - Math.pow(vi, 2) - (2*xf*a))/(2*a));  // xi = -(v^2 - vi^2 - 2*xf*a) / 2a
+        XI = Double.toString(xi);//casting xi from double to string XI for output
+        return XI;//returns the string value for XI
+    }
+    
+    
     //Calculates Final Position given Inital Position and Displacement
     //XI = Initial position, XF = Final Position, D = Displacement 
     public static String calculateFinalPosition(String D, String XI) {
@@ -36,6 +112,81 @@ public class Equations {
 
         return XF;//returns the string value for XF
     }
+    
+    //Calculates Final position when given Acceleration, Initial Velocity, Time, and Initial Position
+    //A = Acceleration, VI = Initial Velocity, T = Time, XI = Initial Position, XF = Final Position
+    public static String calculateFinalPosition2(String A, String VI, String T, String XI) {
+        String XF;
+        double xf;
+        double a = Double.parseDouble(A);//casting input A as a double value using parse
+        double xi = Double.parseDouble(XI); // casting input XI as a double value using parse
+        double vi;
+        if (VI != null) {
+            vi = Double.parseDouble(VI);//casting input VI as a double value using parse
+        } else {
+            vi = 0;
+        }
+        double t = Double.parseDouble(T);//casting input T as a double value using parse
+        xf = (vi * t) + (.5 * a * Math.pow(t, 2)) + xi;  //Initial pos = velocity*time +(accleration * time^2)/2 + xi
+
+        XF = Double.toString(xf);//casting xf from double to string XF for output
+
+        return XF;//returns the string value for D
+    }
+    
+    //Calculates Final Position when given Final Velocity, Initial Velocity, Time, and Initial Position
+    //VF = Final Velocity, VI = Initial Velocity, T = Time, XI = Initial Position
+    public static String calculateFinalPosition3(String VF, String VI, String T, String XI) {
+        String XF;
+        double xf;
+        double vf;
+        double xi = Double.parseDouble(XI);
+        if (VF != null) {
+            vf = Double.parseDouble(VF);//casting input VF as a double value using parse
+        } else {
+            vf = 0;
+        }
+        
+        double vi;
+        if (VI != null) {
+            vi = Double.parseDouble(VI);//casting input VI as a double value using parse
+        } else {
+            vi = 0;
+        }
+      
+        double t = Double.parseDouble(T);//casting input T as a double value using parse
+        xf = ((t*vf)+(t*vi)+(2*t))/ 2;  
+        XF = Double.toString(xf);//casting xf from double to string XF for output
+        return XF;//returns the string value for XF
+    }
+    
+    
+    //Calculates Final Position when given Final Velocity, Initial Velocity, Acceleration, and Initial Position
+    // VF = Final Velocity, VI = Initial Velocity, A = Acceleration, XF = Final Position, XI = Initial Position
+    public static String calculateFinalPosition4(String VF, String VI, String A, String XI) {
+        String XF;
+        double xf;
+        double vf;
+        double xi = Double.parseDouble(XI); //casting input XI as a double value using parse
+        if (VF != null) {
+            vf = Double.parseDouble(VF);//casting input VF as a double value using parse
+        } else {
+            vf = 0;
+        }
+        
+        double vi;
+        if (VI != null) {
+            vi = Double.parseDouble(VI);//casting input VI as a double value using parse
+        } else {
+            vi = 0;
+        }
+        
+        double a = Double.parseDouble(A);//casting input A as a double value using parse
+        xf = (Math.pow(vf, 2) - Math.pow(vi, 2) + (2*xi*a))/(2*a);  // xf = (v^2 - vi^2 - 2*xi*a) / 2a
+        XF = Double.toString(xf);//casting xf from double to string XF for output
+        return XF;//returns the string value for XF
+    }
+    
     //Calculates Displacement when given Initial and Final Position
     //XF = final position, XF = initial 
     public static String calculateDisplacement(String XF, String XI) {
