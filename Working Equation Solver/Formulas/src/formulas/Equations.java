@@ -348,7 +348,7 @@ public class Equations {
         return A;//returns the string value for A
     }
 
-    //Steven J - 6/4/29
+    //Steven J - 6/4/19
     //Calculates Final Velocity when given Initial Velocity, Acceleration and Time
     //U = Initial Velocity, A = Acceleration, T = Time
     public static String calculateFinalVelocity(String VI, String A, String T) {
@@ -366,10 +366,10 @@ public class Equations {
         vf = vi + a * t;    //Final Velocity = Initial Velocity + Acceleration*(time)
         VF = Double.toString(vf);//casting v from double to string V for output
 
-        return VF;//returns the string value for V
+        return VF;//returns the string value for VF
     }
 
-    //Steven J - 6/4/29
+    //Steven J - 6/4/19
     //Calculates Initial Velocity when given Final Velocity, Acceleration and Time
     //Final Velocity = V, A = Acceleration, T = Time
     public static String calculateInitialVelocity(String VF, String A, String T) {
@@ -387,7 +387,26 @@ public class Equations {
         vi = vf - a * t;    //Initial Velocity = Final Velocity - Acceleration*(time)
         VI = Double.toString(vi);//casting vi from double to string VI for output
 
-        return VI;//returns the string value for U
+        return VI;//returns the string value for VI
     }
+    //Steven J - 6/5/19
+    //Calculates Velocity when given Final Position, Initial Position and Time
+    //Final Position = XF, Initial Position = XI, Time = T
+    public static String calculateVelocity(String XF, String XI String T) {
+        String V;
+        double v;
+        double xf;
+        if (XF != null) {
+            xf = Double.parseDouble(XF);//casting input XF as a double value using parse
+        } else {
+            xf = 0;
+        }
+        
+        double t = Double.parseDouble(T);//casting input T as a double value using parse
+        double xi = Double.parseDouble(xi);//casting input XI as a double value using parse
+        v = (xf - xi) / t;    // Velocity = (Final Position - Initial Position)/ time
+        V = Double.toString(v);//casting v from double to string V for output
 
+        return V;//returns the string value for V
+    }
 }
