@@ -392,7 +392,7 @@ public class Equations {
     //Steven J - 6/5/19
     //Calculates Velocity when given Final Position, Initial Position and Time
     //Final Position = XF, Initial Position = XI, Time = T
-    public static String calculateVelocity(String XF, String XI String T) {
+    public static String calculateVelocity(String XF, String XI, String T) {
         String V;
         double v;
         double xf;
@@ -403,7 +403,7 @@ public class Equations {
         }
         
         double t = Double.parseDouble(T);//casting input T as a double value using parse
-        double xi = Double.parseDouble(xi);//casting input XI as a double value using parse
+        double xi = Double.parseDouble(XI);//casting input XI as a double value using parse
         v = (xf - xi) / t;    // Velocity = (Final Position - Initial Position)/ time
         V = Double.toString(v);//casting v from double to string V for output
 
