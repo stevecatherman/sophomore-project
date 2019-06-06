@@ -1,0 +1,8 @@
+Time:
+  t = (vf - vi) / a     time = final velocity - initial velocity  / acceleration
+  t = tf - ti           time = final time - initial time
+  
+Acceleration:
+  a = (vf - vi) / (t)   acceleration = final velocity - initial velocity / time
+  
+  
