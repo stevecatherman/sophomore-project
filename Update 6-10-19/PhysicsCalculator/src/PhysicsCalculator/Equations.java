@@ -375,7 +375,21 @@ public class Equations {
 
         return A;//returns the string value for A
     }
-
+    
+    //Calculates Acceleration when given Force and Mass.
+    //F = Force, M = Mass
+    public static String calculateAccleration2(String F, String M){
+        String A;
+        double a;
+        double f = Double.parseDouble(F);
+        double m = Double.parseDouble(M);
+        a = f/m;  //Acceleration = Force / Mass
+        A = Double.toString(a);
+        
+        return A; //Return string value for A
+    }
+    
+}
     //Steven J - 6/4/19
     //Calculates Final Velocity when given Initial Velocity, Acceleration and Time
     //U = Initial Velocity, A = Acceleration, T = Time
