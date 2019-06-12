@@ -378,7 +378,7 @@ public class Equations {
     
     //Calculates Acceleration when given Force and Mass.
     //F = Force, M = Mass
-    public static String calculateAccleration2(String F, String M){
+    public static String calculateAcceleration2(String F, String M){
         String A;
         double a;
         double f = Double.parseDouble(F);
@@ -515,4 +515,30 @@ public class Equations {
         return M; //Return string value for M
     }
     
+    //Calculates Mass given Force, Final and Initial Velocity, and Time
+    //F = Force, VF = Final Velocity, VI = Initial Velocity, T = Time.
+    public static String calculateMass2(String F, String VF, String VI, String T){
+        String M;
+        double m;
+        double f = Double.parseDouble(F);
+        double t = Double.parseDouble(T);
+        double vf;
+        if (VF != null) {
+            vf = Double.parseDouble(VF);//casting input VF as a double value using parse
+        } else {
+            vf = 0;
+        }
+        double vi;
+        if (VI != null) {
+            vi = Double.parseDouble(VI);//casting input VI as a double value using parse
+        } else {
+            vi = 0;
+        }
+        m = f / ((vf-vi)/t);  //Mass = Force / Acceleration. Acceleration = (vf - vi) / (t)
+        M = Double.toString(m);
+        
+        return M; //Return string value for M
+    }
+
+
 }
