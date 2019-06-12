@@ -389,7 +389,7 @@ public class Equations {
         return A; //Return string value for A
     }
     
-}
+
     //Steven J - 6/4/19
     //Calculates Final Velocity when given Initial Velocity, Acceleration and Time
     //U = Initial Velocity, A = Acceleration, T = Time
