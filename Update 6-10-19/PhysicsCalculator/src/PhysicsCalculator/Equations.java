@@ -474,4 +474,17 @@ public class Equations {
         
         return V;
     }
+    
+    //Calculates force when given Mass and Acceleration
+    // M = Mass, A = Acceleration
+    public static String calculateForce(String M, String A){
+        String F;
+        double f;
+        double m = Double.parseDouble(M);
+        double a = Double.parseDouble(A);
+        f = m*a;  //Force = Mass * Acceleration
+        F = Double.toString(f);
+        
+        return F; //Return string value for F
+    }
 }
