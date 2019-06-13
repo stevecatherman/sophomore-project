@@ -1,5 +1,7 @@
 # sophomore-project
 
+6/13/2019: I tried to clean up all the junk. I think everything new is in the master, now. GUI should now save the solved numbers, and has slots for force and mass.
+
 6/6/2019: GUI now integrated with Equations.java and Formulas.java. Simplified to one button. New product backlog and burndown chart added to documents. Powerpoint for presentation 2 also added to documents. All in June 6 branch.
 
 5/30/2019: Product Backlog updated.
