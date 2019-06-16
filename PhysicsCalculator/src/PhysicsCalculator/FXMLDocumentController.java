@@ -147,6 +147,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML private Button finalDisplacementButton;
     @FXML private Button forceButton;
     @FXML private Button massButton;
+    
+    //Gravity check box
+    @FXML private CheckBox gravityCheckBox;
 
     @Override public void initialize(URL url, ResourceBundle rb) {
         
@@ -171,17 +174,17 @@ public class FXMLDocumentController implements Initializable {
         //Set up units choice box - code borrowed from John Damien Smith 5/20/19
         //https://coderanch.com/t/649781/java/Set-values-ChoiceBox-created-Scene
         initialVelocityAvailableChoices = initialVelocityUnits.getItems();
-        initialVelocityAvailableChoices = FXCollections.observableArrayList("m/s"); 
+        initialVelocityAvailableChoices = FXCollections.observableArrayList("m/s", "ft/s"); 
         initialVelocityUnits.setItems(initialVelocityAvailableChoices);
         selectedInitialVelocityUnit = initialVelocityUnits.getSelectionModel().getSelectedItem();
 
         finalVelocityAvailableChoices = finalVelocityUnits.getItems();
-        finalVelocityAvailableChoices = FXCollections.observableArrayList("m/s"); 
+        finalVelocityAvailableChoices = FXCollections.observableArrayList("m/s", "ft/s"); 
         finalVelocityUnits.setItems(finalVelocityAvailableChoices);
         selectedFinalVelocityUnit = finalVelocityUnits.getSelectionModel().getSelectedItem();       
         
         accelerationAvailableChoices = accelerationUnits.getItems();
-        accelerationAvailableChoices = FXCollections.observableArrayList("m/s/s"); 
+        accelerationAvailableChoices = FXCollections.observableArrayList("m/s/s", "ft/s/s"); 
         accelerationUnits.setItems(accelerationAvailableChoices);
         selectedAccelerationUnit = accelerationUnits.getSelectionModel().getSelectedItem();
 
@@ -196,22 +199,22 @@ public class FXMLDocumentController implements Initializable {
         selectedFinalTimeUnit = finalTimeUnits.getSelectionModel().getSelectedItem();
 
         initialDisplacementAvailableChoices = initialDisplacementUnits.getItems();
-        initialDisplacementAvailableChoices = FXCollections.observableArrayList("m"); 
+        initialDisplacementAvailableChoices = FXCollections.observableArrayList("m", "ft"); 
         initialDisplacementUnits.setItems(initialDisplacementAvailableChoices);
         selectedInitialDisplacementUnit = initialDisplacementUnits.getSelectionModel().getSelectedItem();    
 
         finalDisplacementAvailableChoices = finalDisplacementUnits.getItems();
-        finalDisplacementAvailableChoices = FXCollections.observableArrayList("m"); 
+        finalDisplacementAvailableChoices = FXCollections.observableArrayList("m", "ft"); 
         finalDisplacementUnits.setItems(finalDisplacementAvailableChoices);
         selectedFinalDisplacementUnit = finalDisplacementUnits.getSelectionModel().getSelectedItem();
 
         forceAvailableChoices = forceUnits.getItems();
-        forceAvailableChoices = FXCollections.observableArrayList("N"); 
+        forceAvailableChoices = FXCollections.observableArrayList("N", "lb"); 
         forceUnits.setItems(forceAvailableChoices);
         selectedForceUnit = forceUnits.getSelectionModel().getSelectedItem();
 
         massAvailableChoices = massUnits.getItems();
-        massAvailableChoices = FXCollections.observableArrayList("kg"); 
+        massAvailableChoices = FXCollections.observableArrayList("kg", "lb"); 
         massUnits.setItems(massAvailableChoices);
         selectedMassUnit = massUnits.getSelectionModel().getSelectedItem();
         
@@ -260,7 +263,10 @@ public class FXMLDocumentController implements Initializable {
         massEntries = massBox.getItems();
         //distanceEntries = FXCollections.observableArrayList(""); 
         massBox.setItems(massEntries);
-        selectedMassEntry = massBox.getSelectionModel().getSelectedItem();        
+        selectedMassEntry = massBox.getSelectionModel().getSelectedItem();   
+        
+        //if(event.getSource() == fileMenuOpen)
+        //gravityCheckBox;
     }//end constructor      
     
     //Calculates answer
@@ -669,4 +675,15 @@ public class FXMLDocumentController implements Initializable {
             massLabel.setText("");
         }//end if          
     }//end SavedEntriesListener method
+
+    @FXML private void gravityBoxListener(ActionEvent event) {
+        if(gravityCheckBox.isSelected()){
+            accelerationText.setText("9.8");
+            accelerationUnits.getSelectionModel().selectFirst();
+        }//end if
+        if(!gravityCheckBox.isSelected()){
+            accelerationText.setText(null);
+            accelerationUnits.getSelectionModel().clearSelection();
+        }//end if       
+    }//end gravityBoxListener method
 }//end DocumentController
