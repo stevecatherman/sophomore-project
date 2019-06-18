@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.stage.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 
 public class FXMLDocumentController implements Initializable {
     
@@ -74,38 +75,7 @@ public class FXMLDocumentController implements Initializable {
     
     //Title
     @FXML private ImageView titleImage;
-    private Image title;
-
-    //Unit drop-down boxes
-    @FXML private ChoiceBox<String> initialVelocityUnits;
-    @FXML private ChoiceBox<String> finalVelocityUnits;
-    @FXML private ChoiceBox<String> accelerationUnits;
-    @FXML private ChoiceBox<String> initialTimeUnits;
-    @FXML private ChoiceBox<String> finalTimeUnits;
-    @FXML private ChoiceBox<String> initialDisplacementUnits;
-    @FXML private ChoiceBox<String> finalDisplacementUnits;
-    @FXML private ChoiceBox<String> forceUnits;
-    @FXML private ChoiceBox<String> massUnits;
-    
-    ObservableList<String> initialVelocityAvailableChoices;
-    ObservableList<String> finalVelocityAvailableChoices;
-    ObservableList<String> accelerationAvailableChoices; 
-    ObservableList<String> initialTimeAvailableChoices;    
-    ObservableList<String> finalTimeAvailableChoices;
-    ObservableList<String> initialDisplacementAvailableChoices;
-    ObservableList<String> finalDisplacementAvailableChoices;
-    ObservableList<String> forceAvailableChoices;    
-    ObservableList<String> massAvailableChoices;    
-    
-    String selectedInitialVelocityUnit;
-    String selectedFinalVelocityUnit;   
-    String selectedAccelerationUnit;
-    String selectedInitialTimeUnit;    
-    String selectedFinalTimeUnit;
-    String selectedInitialDisplacementUnit;
-    String selectedFinalDisplacementUnit;
-    String selectedForceUnit;    
-    String selectedMassUnit;    
+    private Image title;  
 
     //Saved variable value drop-down boxes
     @FXML private ChoiceBox<String> initialVelocityBox;
@@ -150,8 +120,74 @@ public class FXMLDocumentController implements Initializable {
     
     //Gravity check box
     @FXML private CheckBox gravityCheckBox;
+    
+    @FXML private ComboBox<String> initialVelocityUnits;
+    @FXML private ComboBox<String> finalVelocityUnits;
+    @FXML private ComboBox<String> accelerationUnits;
+    @FXML private ComboBox<String> initialTimeUnits;
+    @FXML private ComboBox<String> finalTimeUnits;
+    @FXML private ComboBox<String> initialDisplacementUnits;
+    @FXML private ComboBox<String> finalDisplacementUnits;
+    @FXML private ComboBox<String> forceUnits;
+    @FXML private ComboBox<String> massUnits;
 
+    private ObservableList initialVelocityUnitOptions = FXCollections.observableArrayList();
+    private ObservableList finalVelocityUnitOptions = FXCollections.observableArrayList();    
+    private ObservableList accelerationUnitOptions = FXCollections.observableArrayList();
+    private ObservableList initialTimeUnitOptions = FXCollections.observableArrayList();
+    private ObservableList finalTimeUnitOptions = FXCollections.observableArrayList();
+    private ObservableList initialDisplacementUnitOptions = FXCollections.observableArrayList();
+    private ObservableList finalDisplacementUnitOptions = FXCollections.observableArrayList();
+    private ObservableList forceUnitOptions = FXCollections.observableArrayList();
+    private ObservableList massUnitOptions = FXCollections.observableArrayList();
+    
     @Override public void initialize(URL url, ResourceBundle rb) {
+
+        //Populate Unit ComboBox
+        fileChooser = new FileChooser();
+        
+        initialVelocityUnitOptions.add("m/s");
+        initialVelocityUnitOptions.add("ft/s");        
+        initialVelocityUnits.setItems(initialVelocityUnitOptions);
+        initialVelocityUnits.getSelectionModel().selectFirst();
+
+        finalVelocityUnitOptions.add("m/s");
+        finalVelocityUnitOptions.add("ft/s");        
+        finalVelocityUnits.setItems(finalVelocityUnitOptions);
+        finalVelocityUnits.getSelectionModel().selectFirst();
+        
+        accelerationUnitOptions.add("m/s^2");
+        accelerationUnitOptions.add("ft/s^2");        
+        accelerationUnits.setItems(accelerationUnitOptions);
+        accelerationUnits.getSelectionModel().selectFirst();
+        
+        initialTimeUnitOptions.add("s");       
+        initialTimeUnits.setItems(initialTimeUnitOptions);
+        initialTimeUnits.getSelectionModel().selectFirst();
+        
+        finalTimeUnitOptions.add("s");       
+        finalTimeUnits.setItems(finalTimeUnitOptions);
+        finalTimeUnits.getSelectionModel().selectFirst();
+        
+        initialDisplacementUnitOptions.add("m");
+        initialDisplacementUnitOptions.add("ft");        
+        initialDisplacementUnits.setItems(initialDisplacementUnitOptions);
+        initialDisplacementUnits.getSelectionModel().selectFirst();        
+
+        finalDisplacementUnitOptions.add("m");
+        finalDisplacementUnitOptions.add("ft");        
+        finalDisplacementUnits.setItems(finalDisplacementUnitOptions);        
+        finalDisplacementUnits.getSelectionModel().selectFirst();
+        
+        forceUnitOptions.add("N");
+        forceUnitOptions.add("lb");        
+        forceUnits.setItems(forceUnitOptions);         
+        forceUnits.getSelectionModel().selectFirst();
+        
+        massUnitOptions.add("kg");
+        massUnitOptions.add("lb");        
+        massUnits.setItems(massUnitOptions); 
+        massUnits.getSelectionModel().selectFirst();
         
         //Set up Help Window
         helpStage = new Stage();
@@ -169,54 +205,7 @@ public class FXMLDocumentController implements Initializable {
         
         //Title
         title = new Image("images/title.jpg");
-        titleImage.setImage(title);
-        
-        //Set up units choice box - code borrowed from John Damien Smith 5/20/19
-        //https://coderanch.com/t/649781/java/Set-values-ChoiceBox-created-Scene
-        initialVelocityAvailableChoices = initialVelocityUnits.getItems();
-        initialVelocityAvailableChoices = FXCollections.observableArrayList("m/s", "ft/s"); 
-        initialVelocityUnits.setItems(initialVelocityAvailableChoices);
-        selectedInitialVelocityUnit = initialVelocityUnits.getSelectionModel().getSelectedItem();
-
-        finalVelocityAvailableChoices = finalVelocityUnits.getItems();
-        finalVelocityAvailableChoices = FXCollections.observableArrayList("m/s", "ft/s"); 
-        finalVelocityUnits.setItems(finalVelocityAvailableChoices);
-        selectedFinalVelocityUnit = finalVelocityUnits.getSelectionModel().getSelectedItem();       
-        
-        accelerationAvailableChoices = accelerationUnits.getItems();
-        accelerationAvailableChoices = FXCollections.observableArrayList("m/s/s", "ft/s/s"); 
-        accelerationUnits.setItems(accelerationAvailableChoices);
-        selectedAccelerationUnit = accelerationUnits.getSelectionModel().getSelectedItem();
-
-        initialTimeAvailableChoices = initialTimeUnits.getItems();
-        initialTimeAvailableChoices = FXCollections.observableArrayList("s"); 
-        initialTimeUnits.setItems(initialTimeAvailableChoices);
-        selectedInitialTimeUnit = initialTimeUnits.getSelectionModel().getSelectedItem();        
-        
-        finalTimeAvailableChoices = finalTimeUnits.getItems();
-        finalTimeAvailableChoices = FXCollections.observableArrayList("s"); 
-        finalTimeUnits.setItems(finalTimeAvailableChoices);
-        selectedFinalTimeUnit = finalTimeUnits.getSelectionModel().getSelectedItem();
-
-        initialDisplacementAvailableChoices = initialDisplacementUnits.getItems();
-        initialDisplacementAvailableChoices = FXCollections.observableArrayList("m", "ft"); 
-        initialDisplacementUnits.setItems(initialDisplacementAvailableChoices);
-        selectedInitialDisplacementUnit = initialDisplacementUnits.getSelectionModel().getSelectedItem();    
-
-        finalDisplacementAvailableChoices = finalDisplacementUnits.getItems();
-        finalDisplacementAvailableChoices = FXCollections.observableArrayList("m", "ft"); 
-        finalDisplacementUnits.setItems(finalDisplacementAvailableChoices);
-        selectedFinalDisplacementUnit = finalDisplacementUnits.getSelectionModel().getSelectedItem();
-
-        forceAvailableChoices = forceUnits.getItems();
-        forceAvailableChoices = FXCollections.observableArrayList("N", "lb"); 
-        forceUnits.setItems(forceAvailableChoices);
-        selectedForceUnit = forceUnits.getSelectionModel().getSelectedItem();
-
-        massAvailableChoices = massUnits.getItems();
-        massAvailableChoices = FXCollections.observableArrayList("kg", "lb"); 
-        massUnits.setItems(massAvailableChoices);
-        selectedMassUnit = massUnits.getSelectionModel().getSelectedItem();
+        titleImage.setImage(title);        
         
         //Set up entries choice box - code borrowed from John Damien Smith 5/20/19
         //https://coderanch.com/t/649781/java/Set-values-ChoiceBox-created-Scene        
@@ -374,7 +363,7 @@ public class FXMLDocumentController implements Initializable {
         if(massString != ""){
             massLabel.setText(massString); 
         }//end if          
-                        
+        
         //Calculate Answer
         String[] numbersIn = new String[9];
         numbersIn[0] = initialVelocityLabel.getText();
@@ -407,7 +396,7 @@ public class FXMLDocumentController implements Initializable {
         initialDisplacementEntries.add(initialDisplacementLabel.getText());
         finalDisplacementEntries.add(finalDisplacementLabel.getText());        
         forceEntries.add(forceLabel.getText());         
-        massEntries.add(massLabel.getText()); 
+        massEntries.add(massLabel.getText());         
     }//end calcButtonListener method
 
     //Clears entries, resets units
@@ -415,47 +404,38 @@ public class FXMLDocumentController implements Initializable {
 
         initialVelocityText.setText("");
         initialVelocityLabel.setText("");
-        initialVelocityUnits.getSelectionModel().clearSelection();
         initialVelocityBox.getSelectionModel().clearSelection();
 
         finalVelocityText.setText("");
         finalVelocityLabel.setText("");
-        finalVelocityUnits.getSelectionModel().clearSelection();
         finalVelocityBox.getSelectionModel().clearSelection();
 
         initialTimeText.setText("");
         initialTimeLabel.setText("");
-        initialTimeUnits.getSelectionModel().clearSelection();
         initialTimeBox.getSelectionModel().clearSelection();
         
         finalTimeText.setText("");
         finalTimeLabel.setText("");
-        finalTimeUnits.getSelectionModel().clearSelection();
         finalTimeBox.getSelectionModel().clearSelection();
         
         accelerationText.setText("");
         accelerationLabel.setText("");
-        accelerationUnits.getSelectionModel().clearSelection();
         accelerationBox.getSelectionModel().clearSelection();
                 
         initialDisplacementText.setText("");
-        initialDisplacementLabel.setText("");
-        initialDisplacementUnits.getSelectionModel().clearSelection();  
+        initialDisplacementLabel.setText(""); 
         initialDisplacementBox.getSelectionModel().clearSelection();
         
         finalDisplacementText.setText("");
-        finalDisplacementLabel.setText("");
-        finalDisplacementUnits.getSelectionModel().clearSelection();  
+        finalDisplacementLabel.setText("");  
         finalDisplacementBox.getSelectionModel().clearSelection();                
 
         forceText.setText("");
-        forceLabel.setText("");
-        forceUnits.getSelectionModel().clearSelection();  
+        forceLabel.setText(""); 
         forceBox.getSelectionModel().clearSelection(); 
 
         massText.setText("");
-        massLabel.setText("");
-        massUnits.getSelectionModel().clearSelection();  
+        massLabel.setText("");  
         massBox.getSelectionModel().clearSelection();         
     }//end clearButtonListener method
     
@@ -498,71 +478,7 @@ public class FXMLDocumentController implements Initializable {
                 input = inFile.nextLine();
                 initialDisplacementLabel.setText(input);                
                 input = inFile.nextLine();
-                finalDisplacementLabel.setText(input); 
-                
-                //Units
-                //Velocity
-                input = inFile.nextLine();
-                for(int i = 0; i < initialVelocityAvailableChoices.size(); i++){
-                    if(initialVelocityAvailableChoices.get(i).equals(input)){
-                        initialVelocityUnits.getSelectionModel().select(i);
-                        break;
-                    }//end if
-                }//end for loop
-                
-                //mass
-                input = inFile.nextLine();
-                for(int i = 0; i < finalVelocityAvailableChoices.size(); i++){
-                    if(finalVelocityAvailableChoices.get(i).equals(input)){
-                        finalVelocityUnits.getSelectionModel().select(i);
-                        break;
-                    }//end if
-                }//end for loop
-
-                //acceleration
-                input = inFile.nextLine();
-                for(int i = 0; i < accelerationAvailableChoices.size(); i++){
-                    if(accelerationAvailableChoices.get(i).equals(input)){
-                        accelerationUnits.getSelectionModel().select(i);
-                        break;
-                    }//end if
-                }//end for loop
-                
-                //time
-                input = inFile.nextLine();
-                for(int i = 0; i < initialTimeAvailableChoices.size(); i++){
-                    if(initialTimeAvailableChoices.get(i).equals(input)){
-                        initialTimeUnits.getSelectionModel().select(i);
-                        break;
-                    }//end if
-                }//end for loop
-                
-                //force
-                input = inFile.nextLine();
-                for(int i = 0; i < finalTimeAvailableChoices.size(); i++){
-                    if(finalTimeAvailableChoices.get(i).equals(input)){
-                        finalTimeUnits.getSelectionModel().select(i);
-                        break;
-                    }//end if
-                }//end for loop  
-
-                //distance
-                input = inFile.nextLine();
-                for(int i = 0; i < initialDisplacementAvailableChoices.size(); i++){
-                    if(initialDisplacementAvailableChoices.get(i).equals(input)){
-                        initialDisplacementUnits.getSelectionModel().select(i);
-                        break;
-                    }//end if
-                }//end for loop  
-
-                //final displacement
-                input = inFile.nextLine();
-                for(int i = 0; i < finalDisplacementAvailableChoices.size(); i++){
-                    if(finalDisplacementAvailableChoices.get(i).equals(input)){
-                        finalDisplacementUnits.getSelectionModel().select(i);
-                        break;
-                    }//end if
-                }//end for loop
+                finalDisplacementLabel.setText(input);                 
                 
                 inFile.close();
             }//end try
@@ -586,14 +502,6 @@ public class FXMLDocumentController implements Initializable {
                 pw.println(finalTimeLabel.getText());
                 pw.println(initialDisplacementLabel.getText());
                 pw.println(finalDisplacementLabel.getText());
-                
-                pw.println(initialVelocityUnits.getValue());
-                pw.println(finalVelocityUnits.getValue());
-                pw.println(accelerationUnits.getValue());
-                pw.println(initialTimeUnits.getValue());
-                pw.println(finalTimeUnits.getValue());
-                pw.println(initialDisplacementUnits.getValue());
-                pw.println(finalDisplacementUnits.getValue());
                 
                 pw.close();
             }//end try
@@ -679,11 +587,105 @@ public class FXMLDocumentController implements Initializable {
     @FXML private void gravityBoxListener(ActionEvent event) {
         if(gravityCheckBox.isSelected()){
             accelerationText.setText("9.8");
-            accelerationUnits.getSelectionModel().selectFirst();
         }//end if
         if(!gravityCheckBox.isSelected()){
-            accelerationText.setText(null);
-            accelerationUnits.getSelectionModel().clearSelection();
         }//end if       
     }//end gravityBoxListener method
+
+    @FXML
+    private void unitListener(ActionEvent event){
+ 
+        
+    }//end unitListener method
+
+    @FXML private void initialVelocityUnitListener(ActionEvent event) {
+        Converter convert = new Converter();
+
+        if(initialVelocityUnits.getValue() == "ft/s"){
+            initialVelocityLabel.setText(convert.metersToFeet(initialVelocityText.getText()));
+            initialVelocityText.setText(initialVelocityLabel.getText());
+        }//end if            
+        if(initialVelocityUnits.getValue() == "m/s"){
+            initialVelocityLabel.setText(convert.feetToMeters(initialVelocityText.getText()));
+            initialVelocityText.setText(initialVelocityLabel.getText());
+        }//end if                   
+    }//end initialVelocityUnitListener method
+
+    @FXML private void finalVelocityUnitListener(ActionEvent event) {
+        Converter convert = new Converter();
+
+        if(finalVelocityUnits.getValue() == "ft/s"){
+            finalVelocityLabel.setText(convert.metersToFeet(finalVelocityText.getText()));
+            finalVelocityText.setText(finalVelocityLabel.getText());
+        }//end if            
+        if(finalVelocityUnits.getValue() == "m/s"){
+            finalVelocityLabel.setText(convert.feetToMeters(finalVelocityText.getText()));
+            finalVelocityText.setText(finalVelocityLabel.getText());
+        }//end if                  
+    }//end finalVelocityUnitListener method
+
+    @FXML private void accelerationUnitListener(ActionEvent event) {
+        Converter convert = new Converter();
+
+        if(accelerationUnits.getValue() == "ft/s^2"){
+            accelerationLabel.setText(convert.metersToFeet(accelerationText.getText()));
+            accelerationText.setText(accelerationLabel.getText());
+        }//end if            
+        if(accelerationUnits.getValue() == "m/s^2"){
+            accelerationLabel.setText(convert.feetToMeters(accelerationText.getText()));
+            accelerationText.setText(accelerationLabel.getText());
+        }//end if                  
+    }//end accelerationUnitListener method
+
+    @FXML private void initialDisplacementUnitListener(ActionEvent event) {
+        Converter convert = new Converter();     
+
+        if(initialDisplacementUnits.getValue() == "ft"){
+            initialDisplacementLabel.setText(convert.metersToFeet(initialDisplacementText.getText()));
+            initialDisplacementText.setText(initialDisplacementLabel.getText());
+        }//end if            
+        if(initialDisplacementUnits.getValue() == "m"){
+            initialDisplacementLabel.setText(convert.feetToMeters(initialDisplacementText.getText()));
+            initialDisplacementText.setText(initialDisplacementLabel.getText());
+        }//end if                          
+    }//end initialDisplacementUnitListener method
+
+    @FXML private void finalDisplacementUnitListener(ActionEvent event) {
+        Converter convert = new Converter();     
+
+        if(finalDisplacementUnits.getValue() == "ft"){
+            finalDisplacementLabel.setText(convert.metersToFeet(finalDisplacementText.getText()));
+            finalDisplacementText.setText(finalDisplacementLabel.getText());
+        }//end if            
+        if(finalDisplacementUnits.getValue() == "m"){
+            finalDisplacementLabel.setText(convert.feetToMeters(finalDisplacementText.getText()));
+            finalDisplacementText.setText(finalDisplacementLabel.getText());
+        }//end if         
+    }//end finalDisplacementUnitListener method
+
+    @FXML private void forceUnitListener(ActionEvent event) {
+        Converter convert = new Converter();     
+
+        if(forceUnits.getValue() == "lb"){
+            forceLabel.setText(convert.NToLb(forceText.getText()));
+            forceText.setText(forceLabel.getText());
+        }//end if            
+        if(forceUnits.getValue() == "N"){
+            forceLabel.setText(convert.lbToN(forceText.getText()));
+            forceText.setText(forceLabel.getText());
+        }//end if                  
+    }//end forceUnitListener method
+
+    @FXML private void massUnitListener(ActionEvent event) {
+        Converter convert = new Converter();     
+
+        if(massUnits.getValue() == "lb"){
+            massLabel.setText(convert.kgToLb(massText.getText()));
+            massText.setText(massLabel.getText());
+        }//end if            
+        if(massUnits.getValue() == "kg"){
+            massLabel.setText(convert.lbToKg(massText.getText()));
+            massText.setText(massLabel.getText());
+        }//end if          
+    }//end massUnitListener method    
 }//end DocumentController
