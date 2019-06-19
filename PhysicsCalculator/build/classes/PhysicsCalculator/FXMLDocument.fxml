@@ -17,29 +17,31 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PhysicsCalculator.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PhysicsCalculator.FXMLDocumentController">
    <children>
-      <Button fx:id="calcButton" layoutX="309.0" layoutY="637.0" mnemonicParsing="false" onAction="#calcButtonListener" prefHeight="77.0" prefWidth="244.0" text="Calculate" textFill="#e80b0b">
+      <Button fx:id="calcButton" layoutX="341.0" layoutY="637.0" mnemonicParsing="false" onAction="#calcButtonListener" prefHeight="77.0" prefWidth="244.0" text="Calculate" textFill="#e80b0b">
          <font>
             <Font name="System Bold" size="36.0" />
          </font></Button>
-      <Button fx:id="helpButton" alignment="CENTER" layoutX="610.0" layoutY="637.0" mnemonicParsing="false" onAction="#helpButtonListener" prefHeight="77.0" prefWidth="220.0" text="Need Help?">
+      <Button fx:id="helpButton" alignment="CENTER" layoutX="659.0" layoutY="637.0" mnemonicParsing="false" onAction="#helpButtonListener" prefHeight="77.0" prefWidth="168.0" text="Need Help?">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="clearButton" alignment="CENTER" layoutX="53.0" layoutY="637.0" mnemonicParsing="false" onAction="#clearButtonListener" prefHeight="77.0" prefWidth="199.0" text="Clear">
+      <Button fx:id="clearButton" alignment="CENTER" layoutX="54.0" layoutY="637.0" mnemonicParsing="false" onAction="#clearButtonListener" prefHeight="77.0" prefWidth="199.0" text="Clear">
          <font>
             <Font name="System Bold" size="36.0" />
          </font></Button>
-      <GridPane alignment="CENTER" layoutX="14.0" layoutY="153.0" prefHeight="455.0" prefWidth="844.0">
+      <GridPane alignment="CENTER" layoutX="14.0" layoutY="153.0" prefHeight="455.0" prefWidth="856.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="134.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="176.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="193.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="56.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="144.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="132.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="103.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="145.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="154.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="60.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="142.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="97.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="89.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="66.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
@@ -111,23 +113,78 @@
             <ChoiceBox fx:id="forceBox" prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
             <ChoiceBox fx:id="massBox" prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="4" GridPane.rowIndex="10" />
             <CheckBox fx:id="gravityCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gravityBoxListener" text="Gravity" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <ComboBox fx:id="initialVelocityUnits" onAction="#initialVelocityUnitListener" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="225.0" text="Units" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <ComboBox fx:id="finalVelocityUnits" onAction="#finalVelocityUnitListener" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <ComboBox fx:id="accelerationUnits" onAction="#accelerationUnitListener" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-            <ComboBox fx:id="initialTimeUnits" onAction="#finalVelocityUnitListener" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-            <ComboBox fx:id="finalTimeUnits" onAction="#unitListener" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-            <ComboBox fx:id="initialDisplacementUnits" onAction="#initialDisplacementUnitListener" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-            <ComboBox fx:id="finalDisplacementUnits" onAction="#finalDisplacementUnitListener" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
-            <ComboBox fx:id="forceUnits" onAction="#forceUnitListener" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
-            <ComboBox fx:id="massUnits" onAction="#massUnitListener" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+            <ComboBox fx:id="initialVelocityUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="225.0" text="Old Units" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <ComboBox fx:id="finalVelocityUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <ComboBox fx:id="accelerationUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <ComboBox fx:id="initialTimeUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <ComboBox fx:id="finalTimeUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <ComboBox fx:id="initialDisplacementUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <ComboBox fx:id="finalDisplacementUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+            <ComboBox fx:id="forceUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+            <ComboBox fx:id="massUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+            <Button fx:id="convertButtonIV" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerIV" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonFV" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerFV" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonA" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerA" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="6">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonID" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerID" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="7">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonFD" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerFD" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="8">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonF" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerF" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="9">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonM" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerM" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="10">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="225.0" text="New Units" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <ComboBox fx:id="newInitialVelocityUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <ComboBox fx:id="newFinalVelocityUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <ComboBox fx:id="newAccelerationUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <ComboBox fx:id="newInitialTimeUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <ComboBox fx:id="newFinalTimeUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <ComboBox fx:id="newInitialDisplacementUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            <ComboBox fx:id="newFinalDisplacementUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+            <ComboBox fx:id="newForceUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+            <ComboBox fx:id="newMassUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="10" />
          </children>
       </GridPane>
-      <ImageView fx:id="titleImage" fitHeight="116.0" fitWidth="520.0" layoutX="186.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="titleImage" fitHeight="116.0" fitWidth="520.0" layoutX="200.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
          <cursor>
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor></ImageView>
-      <MenuBar fx:id="menu" layoutX="-1.0" prefHeight="25.0" prefWidth="883.0">
+      <MenuBar fx:id="menu" layoutX="-1.0" prefHeight="25.0" prefWidth="891.0">
         <menus>
           <Menu fx:id="fileMenu" mnemonicParsing="false" onAction="#menuListener" text="File">
             <items>

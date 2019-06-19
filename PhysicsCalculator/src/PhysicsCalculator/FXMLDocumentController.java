@@ -140,10 +140,40 @@ public class FXMLDocumentController implements Initializable {
     private ObservableList finalDisplacementUnitOptions = FXCollections.observableArrayList();
     private ObservableList forceUnitOptions = FXCollections.observableArrayList();
     private ObservableList massUnitOptions = FXCollections.observableArrayList();
+
+    //Unit Conversion Buttons
+    @FXML private Button convertButtonIV;
+    @FXML private Button convertButtonFV;
+    @FXML private Button convertButtonA;
+    @FXML private Button convertButtonID;
+    @FXML private Button convertButtonFD;
+    @FXML private Button convertButtonF;
+    @FXML private Button convertButtonM;
+
+    //New Unit Drop-Downs
+    @FXML private ComboBox<String> newInitialVelocityUnits;
+    @FXML private ComboBox<String> newFinalVelocityUnits;
+    @FXML private ComboBox<String> newAccelerationUnits;
+    @FXML private ComboBox<String> newInitialTimeUnits;
+    @FXML private ComboBox<String> newFinalTimeUnits;
+    @FXML private ComboBox<String> newInitialDisplacementUnits;
+    @FXML private ComboBox<String> newFinalDisplacementUnits;
+    @FXML private ComboBox<String> newForceUnits;
+    @FXML private ComboBox<String> newMassUnits;
+
+    private ObservableList newInitialVelocityUnitOptions = FXCollections.observableArrayList();
+    private ObservableList newFinalVelocityUnitOptions = FXCollections.observableArrayList();    
+    private ObservableList newAccelerationUnitOptions = FXCollections.observableArrayList();
+    private ObservableList newInitialTimeUnitOptions = FXCollections.observableArrayList();
+    private ObservableList newFinalTimeUnitOptions = FXCollections.observableArrayList();
+    private ObservableList newInitialDisplacementUnitOptions = FXCollections.observableArrayList();
+    private ObservableList newFinalDisplacementUnitOptions = FXCollections.observableArrayList();
+    private ObservableList newForceUnitOptions = FXCollections.observableArrayList();
+    private ObservableList newMassUnitOptions = FXCollections.observableArrayList();
     
     @Override public void initialize(URL url, ResourceBundle rb) {
 
-        //Populate Unit ComboBox
+        //Populate Old Units ComboBox
         fileChooser = new FileChooser();
         
         initialVelocityUnitOptions.add("m/s");
@@ -188,6 +218,51 @@ public class FXMLDocumentController implements Initializable {
         massUnitOptions.add("lb");        
         massUnits.setItems(massUnitOptions); 
         massUnits.getSelectionModel().selectFirst();
+
+        //Populate New Units ComboBox        
+        newInitialVelocityUnitOptions.add("m/s");
+        newInitialVelocityUnitOptions.add("ft/s");        
+        newInitialVelocityUnits.setItems(newInitialVelocityUnitOptions);
+        newInitialVelocityUnits.getSelectionModel().selectFirst();
+
+        newFinalVelocityUnitOptions.add("m/s");
+        newFinalVelocityUnitOptions.add("ft/s");        
+        newFinalVelocityUnits.setItems(newFinalVelocityUnitOptions);
+        newFinalVelocityUnits.getSelectionModel().selectFirst();
+        
+        newAccelerationUnitOptions.add("m/s^2");
+        newAccelerationUnitOptions.add("ft/s^2");        
+        newAccelerationUnits.setItems(newAccelerationUnitOptions);
+        newAccelerationUnits.getSelectionModel().selectFirst();
+        
+        newInitialTimeUnitOptions.add("s");       
+        newInitialTimeUnits.setItems(newInitialTimeUnitOptions);
+        newInitialTimeUnits.getSelectionModel().selectFirst();
+        
+        newFinalTimeUnitOptions.add("s");       
+        newFinalTimeUnits.setItems(newFinalTimeUnitOptions);
+        newFinalTimeUnits.getSelectionModel().selectFirst();
+        
+        newInitialDisplacementUnitOptions.add("m");
+        newInitialDisplacementUnitOptions.add("ft");        
+        newInitialDisplacementUnits.setItems(newInitialDisplacementUnitOptions);
+        newInitialDisplacementUnits.getSelectionModel().selectFirst();        
+
+        newFinalDisplacementUnitOptions.add("m");
+        newFinalDisplacementUnitOptions.add("ft");        
+        newFinalDisplacementUnits.setItems(newFinalDisplacementUnitOptions);        
+        newFinalDisplacementUnits.getSelectionModel().selectFirst();
+        
+        newForceUnitOptions.add("N");
+        newForceUnitOptions.add("lb");        
+        newForceUnits.setItems(newForceUnitOptions);         
+        newForceUnits.getSelectionModel().selectFirst();
+        
+        newMassUnitOptions.add("kg");
+        newMassUnitOptions.add("lb");        
+        newMassUnits.setItems(newMassUnitOptions); 
+        newMassUnits.getSelectionModel().selectFirst();
+
         
         //Set up Help Window
         helpStage = new Stage();
@@ -254,8 +329,6 @@ public class FXMLDocumentController implements Initializable {
         massBox.setItems(massEntries);
         selectedMassEntry = massBox.getSelectionModel().getSelectedItem();   
         
-        //if(event.getSource() == fileMenuOpen)
-        //gravityCheckBox;
     }//end constructor      
     
     //Calculates answer
@@ -334,6 +407,17 @@ public class FXMLDocumentController implements Initializable {
                finalDisplacementString == "bad" || forceString == "bad" || massString == "bad"){
             return;
         }//end if
+
+        //Produce warning if entries are not metric
+        if(newInitialVelocityUnits.getValue() != "m/s" || newFinalVelocityUnits.getValue() != "m/s"
+                || newAccelerationUnits.getValue() != "m/s^2" || newInitialTimeUnits.getValue() != "s"
+                || newFinalTimeUnits.getValue() != "s" || newInitialDisplacementUnits.getValue() != "m"
+                || newFinalDisplacementUnits.getValue() != "m" || newForceUnits.getValue() != "N"
+                || newMassUnits.getValue() != "kg"){
+            numberEntryAlert.setContentText("Please convert all entries to standard SI units, before calculating.");
+            numberEntryAlert.showAndWait();
+            return;
+        }//end if  
         
         //Enter numbers if they are valid
         if(initialVelocityString != ""){
@@ -362,8 +446,8 @@ public class FXMLDocumentController implements Initializable {
         }//end if  
         if(massString != ""){
             massLabel.setText(massString); 
-        }//end if          
-        
+        }//end if           
+       
         //Calculate Answer
         String[] numbersIn = new String[9];
         numbersIn[0] = initialVelocityLabel.getText();
@@ -404,39 +488,53 @@ public class FXMLDocumentController implements Initializable {
 
         initialVelocityText.setText("");
         initialVelocityLabel.setText("");
-        initialVelocityBox.getSelectionModel().clearSelection();
-
+        initialVelocityUnits.getSelectionModel().selectFirst();
+        newInitialVelocityUnits.getSelectionModel().selectFirst();
+        
         finalVelocityText.setText("");
         finalVelocityLabel.setText("");
-        finalVelocityBox.getSelectionModel().clearSelection();
+        finalVelocityUnits.getSelectionModel().selectFirst();
+        newFinalVelocityUnits.getSelectionModel().selectFirst();
 
         initialTimeText.setText("");
         initialTimeLabel.setText("");
-        initialTimeBox.getSelectionModel().clearSelection();
+        initialTimeUnits.getSelectionModel().selectFirst();
+        newInitialTimeUnits.getSelectionModel().selectFirst();
         
         finalTimeText.setText("");
         finalTimeLabel.setText("");
-        finalTimeBox.getSelectionModel().clearSelection();
+        finalVelocityUnits.getSelectionModel().selectFirst();
+        newFinalVelocityUnits.getSelectionModel().selectFirst();
         
         accelerationText.setText("");
         accelerationLabel.setText("");
         accelerationBox.getSelectionModel().clearSelection();
-                
+        accelerationUnits.getSelectionModel().selectFirst();
+        newAccelerationUnits.getSelectionModel().selectFirst();
+        
         initialDisplacementText.setText("");
         initialDisplacementLabel.setText(""); 
         initialDisplacementBox.getSelectionModel().clearSelection();
+        initialDisplacementUnits.getSelectionModel().selectFirst();
+        newInitialDisplacementUnits.getSelectionModel().selectFirst();
         
         finalDisplacementText.setText("");
         finalDisplacementLabel.setText("");  
         finalDisplacementBox.getSelectionModel().clearSelection();                
-
+        finalDisplacementUnits.getSelectionModel().selectFirst();
+        newFinalDisplacementUnits.getSelectionModel().selectFirst();
+        
         forceText.setText("");
         forceLabel.setText(""); 
         forceBox.getSelectionModel().clearSelection(); 
-
+        forceUnits.getSelectionModel().selectFirst();
+        newForceUnits.getSelectionModel().selectFirst();
+        
         massText.setText("");
         massLabel.setText("");  
-        massBox.getSelectionModel().clearSelection();         
+        massBox.getSelectionModel().clearSelection(); 
+        massUnits.getSelectionModel().selectFirst();
+        newMassUnits.getSelectionModel().selectFirst();        
     }//end clearButtonListener method
     
     //Help button
@@ -590,102 +688,188 @@ public class FXMLDocumentController implements Initializable {
         }//end if
         if(!gravityCheckBox.isSelected()){
         }//end if       
-    }//end gravityBoxListener method
+    }//end gravityBoxListener method   
 
-    @FXML
-    private void unitListener(ActionEvent event){
- 
-        
-    }//end unitListener method
+    @FXML private void convertButtonListenerIV(ActionEvent event) {
+        //Error check user entries to make sure they are valid numbers
+        ErrorCheck errorIV = new ErrorCheck();
+        initialVelocityString = errorIV.variableEntry(initialVelocityText.getText());
 
-    @FXML private void initialVelocityUnitListener(ActionEvent event) {
-        Converter convert = new Converter();
-
-        if(initialVelocityUnits.getValue() == "ft/s"){
-            initialVelocityLabel.setText(convert.metersToFeet(initialVelocityText.getText()));
-            initialVelocityText.setText(initialVelocityLabel.getText());
-        }//end if            
-        if(initialVelocityUnits.getValue() == "m/s"){
-            initialVelocityLabel.setText(convert.feetToMeters(initialVelocityText.getText()));
-            initialVelocityText.setText(initialVelocityLabel.getText());
-        }//end if                   
-    }//end initialVelocityUnitListener method
-
-    @FXML private void finalVelocityUnitListener(ActionEvent event) {
-        Converter convert = new Converter();
-
-        if(finalVelocityUnits.getValue() == "ft/s"){
-            finalVelocityLabel.setText(convert.metersToFeet(finalVelocityText.getText()));
-            finalVelocityText.setText(finalVelocityLabel.getText());
-        }//end if            
-        if(finalVelocityUnits.getValue() == "m/s"){
-            finalVelocityLabel.setText(convert.feetToMeters(finalVelocityText.getText()));
-            finalVelocityText.setText(finalVelocityLabel.getText());
-        }//end if                  
-    }//end finalVelocityUnitListener method
-
-    @FXML private void accelerationUnitListener(ActionEvent event) {
-        Converter convert = new Converter();
-
-        if(accelerationUnits.getValue() == "ft/s^2"){
-            accelerationLabel.setText(convert.metersToFeet(accelerationText.getText()));
-            accelerationText.setText(accelerationLabel.getText());
-        }//end if            
-        if(accelerationUnits.getValue() == "m/s^2"){
-            accelerationLabel.setText(convert.feetToMeters(accelerationText.getText()));
-            accelerationText.setText(accelerationLabel.getText());
-        }//end if                  
-    }//end accelerationUnitListener method
-
-    @FXML private void initialDisplacementUnitListener(ActionEvent event) {
-        Converter convert = new Converter();     
-
-        if(initialDisplacementUnits.getValue() == "ft"){
-            initialDisplacementLabel.setText(convert.metersToFeet(initialDisplacementText.getText()));
-            initialDisplacementText.setText(initialDisplacementLabel.getText());
-        }//end if            
-        if(initialDisplacementUnits.getValue() == "m"){
-            initialDisplacementLabel.setText(convert.feetToMeters(initialDisplacementText.getText()));
-            initialDisplacementText.setText(initialDisplacementLabel.getText());
-        }//end if                          
-    }//end initialDisplacementUnitListener method
-
-    @FXML private void finalDisplacementUnitListener(ActionEvent event) {
-        Converter convert = new Converter();     
-
-        if(finalDisplacementUnits.getValue() == "ft"){
-            finalDisplacementLabel.setText(convert.metersToFeet(finalDisplacementText.getText()));
-            finalDisplacementText.setText(finalDisplacementLabel.getText());
-        }//end if            
-        if(finalDisplacementUnits.getValue() == "m"){
-            finalDisplacementLabel.setText(convert.feetToMeters(finalDisplacementText.getText()));
-            finalDisplacementText.setText(finalDisplacementLabel.getText());
-        }//end if         
-    }//end finalDisplacementUnitListener method
-
-    @FXML private void forceUnitListener(ActionEvent event) {
-        Converter convert = new Converter();     
-
-        if(forceUnits.getValue() == "lb"){
-            forceLabel.setText(convert.NToLb(forceText.getText()));
-            forceText.setText(forceLabel.getText());
-        }//end if            
-        if(forceUnits.getValue() == "N"){
-            forceLabel.setText(convert.lbToN(forceText.getText()));
-            forceText.setText(forceLabel.getText());
-        }//end if                  
-    }//end forceUnitListener method
-
-    @FXML private void massUnitListener(ActionEvent event) {
-        Converter convert = new Converter();     
-
-        if(massUnits.getValue() == "lb"){
-            massLabel.setText(convert.kgToLb(massText.getText()));
-            massText.setText(massLabel.getText());
-        }//end if            
-        if(massUnits.getValue() == "kg"){
-            massLabel.setText(convert.lbToKg(massText.getText()));
-            massText.setText(massLabel.getText());
+        //Produce warning if entries are invalid
+        if(initialVelocityString == "bad"){
+            numberEntryAlert.setContentText("Please enter only numbers for initial velocity.");
+            numberEntryAlert.showAndWait();
+            initialVelocityText.setText("");
+            initialVelocityUnits.getSelectionModel().selectFirst();
+            newInitialVelocityUnits.getSelectionModel().selectFirst();
         }//end if          
-    }//end massUnitListener method    
+        
+        //Convert
+        Converter convertIV = new Converter();
+        if(initialVelocityUnits.getValue() == "m/s" && newInitialVelocityUnits.getValue() == "ft/s"){
+            initialVelocityLabel.setText(convertIV.metersToFeet(initialVelocityText.getText()));
+            initialVelocityText.setText(initialVelocityLabel.getText());            
+        }//end if  
+        if(newInitialVelocityUnits.getValue() == "m/s" && initialVelocityUnits.getValue() == "ft/s"){
+            initialVelocityLabel.setText(convertIV.feetToMeters(initialVelocityText.getText()));
+            initialVelocityText.setText(initialVelocityLabel.getText());            
+        }//end if         
+    }//end convertButtonListenerIV method
+
+    @FXML private void convertButtonListenerFV(ActionEvent event) {
+        //Error check user entries to make sure they are valid numbers
+        ErrorCheck errorFV = new ErrorCheck();
+        finalVelocityString = errorFV.variableEntry(finalVelocityText.getText());
+
+        //Produce warning if entries are invalid
+        if(finalVelocityString == "bad"){
+            numberEntryAlert.setContentText("Please enter only numbers for final velocity.");
+            numberEntryAlert.showAndWait();
+            finalVelocityText.setText("");
+            finalVelocityUnits.getSelectionModel().selectFirst();
+            newFinalVelocityUnits.getSelectionModel().selectFirst();
+        }//end if          
+        
+        //Convert
+        Converter convertFV = new Converter();        
+        if(finalVelocityUnits.getValue() == "m/s" && newFinalVelocityUnits.getValue() == "ft/s"){
+            finalVelocityLabel.setText(convertFV.metersToFeet(finalVelocityText.getText()));
+            finalVelocityText.setText(finalVelocityLabel.getText());            
+        }//end if  
+        if(newFinalVelocityUnits.getValue() == "m/s" && finalVelocityUnits.getValue() == "ft/s"){
+            finalVelocityLabel.setText(convertFV.feetToMeters(finalVelocityText.getText()));
+            finalVelocityText.setText(finalVelocityLabel.getText());            
+        }//end if           
+    }//end convertButtonListenerFV
+
+    @FXML private void convertButtonListenerA(ActionEvent event) {
+        //Error check user entries to make sure they are valid numbers
+        ErrorCheck errorA = new ErrorCheck();
+        accelerationString = errorA.variableEntry(accelerationText.getText());
+
+        //Produce warning if entries are invalid
+        if(accelerationString == "bad"){
+            numberEntryAlert.setContentText("Please enter only numbers for acceleration.");
+            numberEntryAlert.showAndWait();
+            accelerationText.setText("");
+            accelerationUnits.getSelectionModel().selectFirst();
+            newAccelerationUnits.getSelectionModel().selectFirst();
+        }//end if          
+        
+        //Convert
+        Converter convertA = new Converter();        
+        if(accelerationUnits.getValue() == "m/s^2" && newAccelerationUnits.getValue() == "ft/s^2"){
+            accelerationLabel.setText(convertA.metersToFeet(accelerationText.getText()));
+            accelerationText.setText(accelerationLabel.getText());            
+        }//end if  
+        if(newAccelerationUnits.getValue() == "m/s^2" && accelerationUnits.getValue() == "ft/s^2"){
+            accelerationLabel.setText(convertA.feetToMeters(accelerationText.getText()));
+            accelerationText.setText(accelerationLabel.getText());         
+        }//end if              
+    }//end convertButtonListenerA
+
+    @FXML private void convertButtonListenerID(ActionEvent event) {
+        //Error check user entries to make sure they are valid numbers
+        ErrorCheck errorID = new ErrorCheck();
+        initialDisplacementString = errorID.variableEntry(initialDisplacementText.getText());
+
+        //Produce warning if entries are invalid
+        if(initialDisplacementString == "bad"){
+            numberEntryAlert.setContentText("Please enter only numbers for initial position.");
+            numberEntryAlert.showAndWait();
+            initialDisplacementText.setText("");
+            initialDisplacementUnits.getSelectionModel().selectFirst();
+            newInitialDisplacementUnits.getSelectionModel().selectFirst();
+        }//end if          
+        
+        //Convert
+        Converter convertID = new Converter();
+        if(initialDisplacementUnits.getValue() == "m" && newInitialDisplacementUnits.getValue() == "ft"){
+            initialDisplacementLabel.setText(convertID.metersToFeet(initialDisplacementText.getText()));
+            initialDisplacementText.setText(initialDisplacementLabel.getText());            
+        }//end if  
+        if(newInitialDisplacementUnits.getValue() == "m" && initialDisplacementUnits.getValue() == "ft"){
+            initialDisplacementLabel.setText(convertID.feetToMeters(initialDisplacementText.getText()));
+            initialDisplacementText.setText(initialDisplacementLabel.getText());            
+        }//end if            
+    }//end convertButtonListenerID
+
+    @FXML private void convertButtonListenerFD(ActionEvent event) {
+        //Error check user entries to make sure they are valid numbers
+        ErrorCheck errorFD = new ErrorCheck();
+        finalDisplacementString = errorFD.variableEntry(finalDisplacementText.getText());
+
+        //Produce warning if entries are invalid
+        if(finalDisplacementString == "bad"){
+            numberEntryAlert.setContentText("Please enter only numbers for final position.");
+            numberEntryAlert.showAndWait();
+            finalDisplacementText.setText("");
+            finalDisplacementUnits.getSelectionModel().selectFirst();
+            newFinalDisplacementUnits.getSelectionModel().selectFirst();
+        }//end if          
+        
+        //Convert
+        Converter convertFD = new Converter();
+        
+        if(finalDisplacementUnits.getValue() == "m" && newFinalDisplacementUnits.getValue() == "ft"){
+            finalDisplacementLabel.setText(convertFD.metersToFeet(finalDisplacementText.getText()));
+            finalDisplacementText.setText(finalDisplacementLabel.getText());            
+        }//end if  
+        if(newFinalDisplacementUnits.getValue() == "m" && finalDisplacementUnits.getValue() == "ft"){
+            finalDisplacementLabel.setText(convertFD.feetToMeters(finalDisplacementText.getText()));
+            finalDisplacementText.setText(finalDisplacementLabel.getText());            
+        }//end if           
+    }//end convertButtonListenerFD
+
+    @FXML private void convertButtonListenerF(ActionEvent event) {
+        //Error check user entries to make sure they are valid numbers
+        ErrorCheck errorF = new ErrorCheck();
+        forceString = errorF.variableEntry(forceText.getText());
+
+        //Produce warning if entries are invalid
+        if(forceString == "bad"){
+            numberEntryAlert.setContentText("Please enter only numbers for force.");
+            numberEntryAlert.showAndWait();
+            forceText.setText("");
+            forceUnits.getSelectionModel().selectFirst();
+            newForceUnits.getSelectionModel().selectFirst();
+        }//end if          
+        
+        //Convert
+        Converter convertF = new Converter();        
+        if(forceUnits.getValue() == "N" && newForceUnits.getValue() == "lb"){
+            forceLabel.setText(convertF.metersToFeet(forceText.getText()));
+            forceText.setText(forceLabel.getText());            
+        }//end if  
+        if(newForceUnits.getValue() == "N" && forceUnits.getValue() == "lb"){
+            forceLabel.setText(convertF.feetToMeters(forceText.getText()));
+            forceText.setText(forceLabel.getText());         
+        }//end if         
+    }//end convertButtonListenerF
+
+    @FXML private void convertButtonListenerM(ActionEvent event) {
+        //Error check user entries to make sure they are valid numbers
+        ErrorCheck errorM = new ErrorCheck();
+        massString = errorM.variableEntry(massText.getText());
+
+        //Produce warning if entries are invalid
+        if(massString == "bad"){
+            numberEntryAlert.setContentText("Please enter only numbers for mass.");
+            numberEntryAlert.showAndWait();
+            massText.setText("");
+            massUnits.getSelectionModel().selectFirst();
+            newMassUnits.getSelectionModel().selectFirst();
+        }//end if          
+        
+        //Convert
+        Converter convertM = new Converter();       
+        if(massUnits.getValue() == "kg" && newMassUnits.getValue() == "lb"){
+            massLabel.setText(convertM.metersToFeet(massText.getText()));
+            massText.setText(massLabel.getText());            
+        }//end if  
+        if(newMassUnits.getValue() == "kg" && massUnits.getValue() == "lb"){
+            massLabel.setText(convertM.feetToMeters(massText.getText()));
+            massText.setText(massLabel.getText());         
+        }//end if          
+    }//end convertButtonListenerM
 }//end DocumentController
