@@ -1,5 +1,7 @@
 # sophomore-project
 
+6/20/2019: Added a .jar to the zip file for Mac users
+
 6/19/2019: We now have basic unit conversion working, and the executable v1.0 is now available.
 
 6/16/2019: The GUI will now accept negative numbers, and you have metric or English options for units. I also added a gravity check box, as an experiment.
