@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PhysicsCalculator.FXMLDocumentController">
+   <children>
+      <Button fx:id="calcButton" layoutX="341.0" layoutY="637.0" mnemonicParsing="false" onAction="#calcButtonListener" prefHeight="77.0" prefWidth="244.0" text="Calculate" textFill="#e80b0b">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font></Button>
+      <Button fx:id="helpButton" alignment="CENTER" layoutX="659.0" layoutY="637.0" mnemonicParsing="false" onAction="#helpButtonListener" prefHeight="77.0" prefWidth="168.0" text="Need Help?">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="clearButton" alignment="CENTER" layoutX="54.0" layoutY="637.0" mnemonicParsing="false" onAction="#clearButtonListener" prefHeight="77.0" prefWidth="199.0" text="Clear">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font></Button>
+      <GridPane alignment="CENTER" layoutX="14.0" layoutY="153.0" prefHeight="455.0" prefWidth="856.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="103.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="145.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="154.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="60.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="142.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="97.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="89.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="66.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="102.0" prefWidth="144.0" text="Initial Velocity" textAlignment="CENTER" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="103.0" prefWidth="144.0" text="Final Velocity" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" prefHeight="105.0" prefWidth="144.0" text="Acceleration" GridPane.rowIndex="4" />
+            <Label alignment="CENTER" prefHeight="108.0" prefWidth="144.0" text="Initial Time" GridPane.rowIndex="5" />
+            <Label alignment="CENTER" prefHeight="116.0" prefWidth="144.0" text="Final Time" GridPane.rowIndex="6" />
+            <Label alignment="CENTER" prefHeight="118.0" prefWidth="144.0" text="Initial Position" GridPane.rowIndex="7" />
+            <TextField fx:id="initialVelocityText" alignment="CENTER" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="finalVelocityText" alignment="CENTER" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="accelerationText" alignment="CENTER" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="initialTimeText" alignment="CENTER" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="finalTimeText" alignment="CENTER" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="initialDisplacementText" alignment="CENTER" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label fx:id="initialVelocityLabel" alignment="CENTER" prefHeight="96.0" prefWidth="298.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="finalVelocityLabel" alignment="CENTER" prefHeight="113.0" prefWidth="271.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="accelerationLabel" alignment="CENTER" prefHeight="116.0" prefWidth="271.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label fx:id="finalTimeLabel" alignment="CENTER" prefHeight="134.0" prefWidth="271.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Label fx:id="initialTimeLabel" alignment="CENTER" prefHeight="115.0" prefWidth="271.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="initialVelocityBox" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <ChoiceBox fx:id="finalVelocityBox" prefHeight="25.0" prefWidth="149.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <ChoiceBox fx:id="accelerationBox" prefHeight="25.0" prefWidth="160.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="initialTimeBox" prefHeight="25.0" prefWidth="158.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <ChoiceBox fx:id="finalTimeBox" prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <ChoiceBox fx:id="initialDisplacementBox" prefHeight="25.0" prefWidth="163.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="135.0" text="Variable Entry" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="225.0" text="Current Value" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="225.0" text="Saved Entries" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button fx:id="initialVelocityButton" alignment="CENTER" mnemonicParsing="false" onAction="#SavedEntriesListener" prefHeight="25.0" prefWidth="65.0" text="&lt;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="finalVelocityButton" alignment="CENTER" mnemonicParsing="false" onAction="#SavedEntriesListener" prefHeight="25.0" prefWidth="65.0" text="&lt;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="accelerationButton" alignment="CENTER" mnemonicParsing="false" onAction="#SavedEntriesListener" prefHeight="25.0" prefWidth="65.0" text="&lt;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Button fx:id="initialTimeButton" alignment="CENTER" mnemonicParsing="false" onAction="#SavedEntriesListener" prefHeight="25.0" prefWidth="65.0" text="&lt;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Button fx:id="finalTimeButton" alignment="CENTER" mnemonicParsing="false" onAction="#SavedEntriesListener" prefHeight="25.0" prefWidth="65.0" text="&lt;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Button fx:id="initialDisplacementButton" alignment="CENTER" mnemonicParsing="false" onAction="#SavedEntriesListener" prefHeight="25.0" prefWidth="65.0" text="&lt;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Label fx:id="initialDisplacementLabel" alignment="CENTER" prefHeight="134.0" prefWidth="271.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <Label alignment="CENTER" prefHeight="118.0" prefWidth="144.0" text="Final Position" GridPane.rowIndex="8" />
+            <TextField fx:id="finalDisplacementText" alignment="CENTER" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label fx:id="finalDisplacementLabel" alignment="CENTER" prefHeight="134.0" prefWidth="271.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Button fx:id="finalDisplacementButton" alignment="CENTER" mnemonicParsing="false" onAction="#SavedEntriesListener" prefHeight="25.0" prefWidth="65.0" text="&lt;" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <ChoiceBox fx:id="finalDisplacementBox" prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <Label alignment="CENTER" prefHeight="118.0" prefWidth="144.0" text="Force" GridPane.rowIndex="9" />
+            <Label alignment="CENTER" prefHeight="118.0" prefWidth="144.0" text="Mass" GridPane.rowIndex="10" />
+            <TextField fx:id="forceText" alignment="CENTER" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="massText" alignment="CENTER" prefHeight="25.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label fx:id="forceLabel" alignment="CENTER" prefHeight="134.0" prefWidth="271.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <Label fx:id="massLabel" alignment="CENTER" prefHeight="134.0" prefWidth="271.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <Button fx:id="forceButton" alignment="CENTER" mnemonicParsing="false" onAction="#SavedEntriesListener" prefHeight="25.0" prefWidth="65.0" text="&lt;" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <Button fx:id="massButton" alignment="CENTER" mnemonicParsing="false" onAction="#SavedEntriesListener" prefHeight="25.0" prefWidth="65.0" text="&lt;" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+            <ChoiceBox fx:id="forceBox" prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+            <ChoiceBox fx:id="massBox" prefHeight="25.0" prefWidth="161.0" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+            <CheckBox fx:id="gravityCheckBox" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gravityBoxListener" text="Gravity" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <ComboBox fx:id="initialVelocityUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="225.0" text="Old Units" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <ComboBox fx:id="finalVelocityUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <ComboBox fx:id="accelerationUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <ComboBox fx:id="initialTimeUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <ComboBox fx:id="finalTimeUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <ComboBox fx:id="initialDisplacementUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <ComboBox fx:id="finalDisplacementUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+            <ComboBox fx:id="forceUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+            <ComboBox fx:id="massUnits" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+            <Button fx:id="convertButtonIV" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerIV" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonFV" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerFV" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonA" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerA" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="6">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonID" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerID" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="7">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonFD" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerFD" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="8">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonF" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerF" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="9">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButtonM" alignment="CENTER" mnemonicParsing="false" onAction="#convertButtonListenerM" prefHeight="26.0" prefWidth="124.0" text="Convert" GridPane.columnIndex="7" GridPane.rowIndex="10">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="225.0" text="New Units" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <ComboBox fx:id="newInitialVelocityUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <ComboBox fx:id="newFinalVelocityUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <ComboBox fx:id="newAccelerationUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <ComboBox fx:id="newInitialTimeUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <ComboBox fx:id="newFinalTimeUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <ComboBox fx:id="newInitialDisplacementUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            <ComboBox fx:id="newFinalDisplacementUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+            <ComboBox fx:id="newForceUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+            <ComboBox fx:id="newMassUnits" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="10" />
+         </children>
+      </GridPane>
+      <ImageView fx:id="titleImage" fitHeight="116.0" fitWidth="520.0" layoutX="200.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor></ImageView>
+      <MenuBar fx:id="menu" layoutX="-1.0" prefHeight="25.0" prefWidth="891.0">
+        <menus>
+          <Menu fx:id="fileMenu" mnemonicParsing="false" onAction="#menuListener" text="File">
+            <items>
+              <MenuItem fx:id="fileMenuSave" mnemonicParsing="false" onAction="#menuListener" text="Save" />
+                  <MenuItem fx:id="fileMenuOpen" mnemonicParsing="false" onAction="#menuListener" text="Open" />
+                  <MenuItem fx:id="fileMenuExit" mnemonicParsing="false" onAction="#menuListener" text="Exit" />
+            </items>
+          </Menu>
+          <Menu fx:id="editMenu" mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#menuListener" text="Delete" />
+            </items>
+          </Menu>
+          <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="helpMenuAbout" mnemonicParsing="false" onAction="#menuListener" text="About" />
+                  <MenuItem fx:id="helpMenuCredits" mnemonicParsing="false" onAction="#menuListener" text="Credits" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

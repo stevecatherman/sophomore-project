@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="309.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="7.0" layoutY="-1.0" prefHeight="58.0" prefWidth="515.0" text="About Physics Destroyer">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextArea editable="false" layoutY="57.0" prefHeight="253.0" prefWidth="522.0" text="This physics calculator was produced as a student project for Oakland University.&#10;Current Version: June 6, 2019&#10;&#10;Project Team:&#10;&#10;Product Owner - Dustin Bramos&#10;Scrum Master - Steve Catherman&#10;Developer - Chris Wiegand&#10;Developer - Matthew Peace&#10;Developer - Steven Jazrawi&#10;">
+         <font>
+            <Font size="14.0" />
+         </font></TextArea>
+   </children>
+</AnchorPane>
